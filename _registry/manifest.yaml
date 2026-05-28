@@ -1,7 +1,7 @@
 schema_version: '1.0'
-generated_at: '2026-05-12T19:55:04.397022+00:00'
+generated_at: '2026-05-28T03:30:43.510217+00:00'
 repository: https://github.com/iberi22/skills
-total_skills: 74
+total_skills: 75
 categories:
 - ai
 - communication
@@ -884,6 +884,18 @@ skills:
   - github
   path: skills/tools/github
   raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/github/SKILL.md
+  authors:
+  - Brahyan Belalcazar
+- id: gmail-admin
+  name: gmail-admin
+  description: Automated Gmail administration using Gmail API and Google Cloud SDK.
+  category: tools
+  tags:
+  - gmail
+  - google-cloud
+  - api
+  path: skills/tools/gmail-admin
+  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/gmail-admin/SKILL.md
   authors:
   - Brahyan Belalcazar
 - id: joker

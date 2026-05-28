@@ -31,3 +31,8 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.bak
+
+# Local Agent Junctions
+/clawd/
+/codex/
+/openclaw-npm/
