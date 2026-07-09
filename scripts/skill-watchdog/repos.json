@@ -1,0 +1,26 @@
+[
+  {
+    "owner": "iberi22",
+    "repo": "swal-skills",
+    "branch": "main",
+    "skill_paths": ["skills"]
+  },
+  {
+    "owner": "iberi22",
+    "repo": "agents-flows-recipes",
+    "branch": "main",
+    "skill_paths": ["skills", "flows", "recipes"]
+  },
+  {
+    "owner": "mattpocock",
+    "repo": "skills",
+    "branch": "main",
+    "skill_paths": ["skills"]
+  },
+  {
+    "owner": "microsoft",
+    "repo": "skills",
+    "branch": "main",
+    "skill_paths": ["skills"]
+  }
+]
