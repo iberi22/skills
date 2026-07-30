@@ -1,10 +1,10 @@
 # 🧠 iberi22/skills
 
-[![Skills Count](https://img.shields.io/badge/skills-74-blue.svg)](./_registry/manifest.yaml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Skills Count](https://img.shields.io/badge/skills-76-blue.svg)](./_registry/manifest.yaml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/mit)
 [![Manifest](https://img.shields.io/badge/manifest-auto--generated-success.svg)](./_registry/manifest.yaml)
 
-> Curated registry of **74 reusable AI agent skills** migrated from `swal-skills` and `agents-flows-recipes`.  
+> Curated registry of **76 reusable AI agent skills** migrated from `swal-skills` and `agents-flows-recipes`.
 > Each skill is a self-contained expertise module with YAML frontmatter + markdown instructions.
 
 ---
@@ -16,23 +16,23 @@
 | `ai` | 3 | AI/ML tooling, fine-tuning, inference |
 | `communication` | 1 | Writing, messaging, tone |
 | `debugging` | 1 | Bug triage, root-cause analysis |
-| `design` | 5 | UI/UX, visual storytelling, brand |
+| `design` | 6 | UI/UX, visual storytelling, brand |
 | `devops` | 1 | Deployment, infrastructure |
 | `education` | 3 | Learning content, exam generation |
 | `engineering-principles` | 1 | Architecture, code quality |
-| `engineering-workflow` | 9 | TDD, prototyping, rapid iteration |
+| `engineering-workflow` | 11 | TDD, prototyping, rapid iteration |
 | `framework` | 4 | Next.js, Astro, Vite, Tailwind CSS |
 | `frontend` | 2 | Frontend-specific agents |
 | `language` | 2 | Python, Rust guidelines |
 | `marketing` | 7 | Content, growth, social media, ASO |
 | `operations` | 5 | Analytics, finance, legal, support |
 | `product` | 3 | Research, feedback, prioritization |
-| `project-management` | 4 | Sprints, shipping, coordination |
+| `project-management` | 3 | Sprints, shipping, coordination |
 | `testing` | 5 | QA, benchmarking, optimization |
-| `tools` | 16 | CLI tools, agent wrappers, MCP |
+| `tools` | 17 | CLI tools, agent wrappers, MCP |
 | `web` | 1 | Web design guidelines, accessibility |
 
-> **Total: 74 skills** across 18 categories.  
+> **Total: 76 skills** across 18 categories.
 > See [`_registry/manifest.yaml`](./_registry/manifest.yaml) for the full machine-readable catalog.
 
 ---
@@ -93,7 +93,7 @@ iberi22/skills
 This registry consolidates skills from previously archived repositories:
 
 - [`swal-skills`](https://github.com/iberi22/swal-skills) — Original SWAL skill modules
-- [`agents-flows-recipes`](https://github.com/iberi22/agents-flows-recipes) — Agent flows and reusable recipes
+- `agents-flows-recipes` - Agent flows and reusable recipes
 
 Both have been archived; this repo is the **single source of truth** going forward.
 

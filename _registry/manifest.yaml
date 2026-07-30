@@ -1,7 +1,7 @@
 schema_version: '1.0'
-generated_at: '2026-05-27T22:31:21.500964+00:00'
+generated_at: '2026-07-30T20:00:56.008296+00:00'
 repository: https://github.com/iberi22/skills
-total_skills: 75
+total_skills: 76
 categories:
 - ai
 - communication
@@ -1031,6 +1031,25 @@ skills:
   raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/xavier2-context/SKILL.md
   authors:
   - Brahyan Belalcazar
+- id: xquik-social-automation
+  name: Xquik Social Automation
+  description: Use Xquik for X research, monitoring, analytics, and approval-gated
+    actions through MCP or REST. Trigger for public post searches, account analysis,
+    trend research, monitored events, drafting, or publishing workflows that need
+    explicit safety boundaries.
+  category: tools
+  tags:
+  - xquik
+  - mcp
+  - x-twitter
+  - social-media
+  - automation
+  path: skills/tools/xquik-social-automation
+  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/xquik-social-automation/SKILL.md
+  authors:
+  - Xquik
+  license: MIT
+  original_source: https://github.com/Xquik-dev/hermes-tweet
 - id: web-design-guidelines
   name: web-design-guidelines
   description: Review UI code for compliance with web interface best practices. Audits
