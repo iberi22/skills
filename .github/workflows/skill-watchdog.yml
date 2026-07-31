@@ -1,0 +1,34 @@
+name: Skill Watchdog
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Weekly on Monday 09:00 UTC
+  workflow_dispatch:
+
+jobs:
+  scan-upstream:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install requests pyyaml
+
+      - name: Run watchdog
+        run: python3 scripts/skill-watchdog/watchdog.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: watchdog-report
+          path: _registry/watchdog-report.json
