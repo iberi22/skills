@@ -90,6 +90,8 @@ included in this repo.
 | `swal-engineering/subagent-skill-injection` | MIT | BeRi + Belal | - |
 | `testing/test-results-analyzer` | - | - | - |
 | `tools/codex` | MIT | Hermes Agent | https://github.com/openai/codex, https://github.com/user/repo.git |
+| `tools/provider-scanner` | MIT | - | - |
+| `tools/rigor-evaluator` | MIT | - | - |
 | `web/blocked-page-recovery` | MIT | - | - |
 
 Apache-2.0 and MIT texts: https://www.apache.org/licenses/LICENSE-2.0 , https://opensource.org/license/mit

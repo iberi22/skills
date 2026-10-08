@@ -585,9 +585,15 @@ skills:
   - id: jules
     category: tools
     description: "Use when delegating a coding task to Google Jules (async cloud coding agent, via REST API v1alpha or the jules CLI), or when monitoring, rescuing, or merging the pull requests it opens."
+  - id: provider-scanner
+    category: tools
+    description: "Use when you need to know which cloud/dev CLIs (aws, gh, docker, kubectl) are installed, authenticated, or reachable on this machine before running tasks that depend on them."
   - id: qwen
     category: tools
     description: ""
+  - id: rigor-evaluator
+    category: tools
+    description: "Use when you need a quick heuristic rigor score (10 criteria, 0-2 each) for the features in a .gitcore/features.json file, to decide which features are ready to ship."
   - id: sqlite-pro
     category: tools
     description: ""
