@@ -4,6 +4,7 @@ name: Frontend Doctor
 category: frontend
 tags:
   - frontend-doctor
+description: Use when a web frontend shows a white screen, runtime JS errors, failed asset loads (404/CORS/CSP), SSR hydration mismatches, a blank browser-extension popup, or broken CSS layout.
 goals:
   - "Diagnose and fix common frontend issues — white screen, JS errors, resource loading failures, React/Vue hydration, browser extension popup, and CSS layout bugs."
 authors:
@@ -29,14 +30,7 @@ You are a senior frontend engineer and debugger. When the user describes a front
 
 ### Step 1 — Gather Context
 
-Ask the user for:
-- Framework / library (React, Vue, Svelte, vanilla JS, etc.)
-- Build tool (Vite, Webpack, Next.js, Nuxt, etc.)
-- Browser and version
-- The exact error message or symptom
-- Relevant code snippets (component, config, HTML)
-- Console output (errors, warnings)
-- Network tab findings (failed requests, status codes)
+Inspect the project first (package.json, build config, the failing component). Ask the user only for what the repo cannot show: the exact console and network output, and the browser.
 
 ### Step 2 — Run Targeted Diagnosis
 

@@ -1,164 +1,151 @@
 ---
-id: codex
 name: codex
-category: tools
-tags:
-  - codex
-goals:
-  - "Use Codex CLI for code generation, review, and autonomous coding tasks. Use this skill when you need OpenAI Codex to perform tasks."
-authors:
-  - Brahyan Belalcazar
+description: "Delegate coding to OpenAI Codex CLI (features, PRs)."
+version: 1.0.1
+author: Hermes Agent
+license: MIT
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [Coding-Agent, Codex, OpenAI, Code-Review, Refactoring]
+    related_skills: [claude-code, hermes-agent]
 ---
 
-# Codex CLI Skill
+# Codex CLI
 
-> OpenAI Codex CLI - AI-powered code generation, editing, and autonomous coding.
+Delegate coding tasks to [Codex](https://github.com/openai/codex) via the Hermes terminal. Codex is OpenAI's autonomous coding agent CLI.
 
-## 🎯 When to Use This Skill
+## When to use
 
-- Code generation from specifications
-- Autonomous code editing and refactoring
-- Code review and analysis
-- Running Codex as a sub-agent for complex tasks
-- Bug detection and fixing
+- Building features
+- Refactoring
+- PR reviews
+- Batch issue fixing
 
-## ⚡ Quick Start
+Requires the codex CLI and a git repository.
 
-### Basic Usage (Headless)
+## Prerequisites
 
-```bash
-# Generate code from a prompt
-codex "Create a Python function to calculate fibonacci"
+- Codex installed: `npm install -g @openai/codex`
+- OpenAI auth configured: either `OPENAI_API_KEY` or Codex OAuth credentials
+  from the Codex CLI login flow
+- **Must run inside a git repository** — Codex refuses to run outside one
+- Use `pty=true` in terminal calls — Codex is an interactive terminal app
 
-# Non-interactive mode
-codex exec "Your task here"
+For Hermes itself, `model.provider: openai-codex` uses Hermes-managed Codex
+OAuth from `~/.hermes/auth.json` after `hermes auth add openai-codex`. For the
+standalone Codex CLI, a valid CLI OAuth session may live under
+`~/.codex/auth.json`; do not treat a missing `OPENAI_API_KEY` alone as proof
+that Codex auth is missing.
 
-# Review code
-codex review --file src/main.rs
+## One-Shot Tasks
 
-# Specific model
-codex -m o3 "Your prompt"
+```
+terminal(command="codex exec 'Add dark mode toggle to settings'", workdir="~/project", pty=true)
 ```
 
-### Available Commands
-
-| Command | Description |
-|---------|-------------|
-| `codex --help` | Show all options |
-| `codex exec "task"` | Run task non-interactively |
-| `codex review` | Code review mode |
-| `codex -m o3 "task"` | Use o3 model |
-| `codex -m o4 "task"` | Use o4 model |
-| `codex --version` | Show version |
-
-### Models
-
-- `o3` (default for complex tasks)
-- `o4-mini`
-- `codex-sonnet-4`
-
-## 🔧 Advanced Usage
-
-### Sandbox Modes
-
-```bash
-# Read-only (safe)
-codex -s read-only "Review this code"
-
-# Workspace write
-codex -s workspace-write "Fix the bug"
-
-# Full access (dangerous)
-codex -s danger-full-access "Your task"
+For scratch work (Codex needs a git repo):
+```
+terminal(command="cd $(mktemp -d) && git init && codex exec 'Build a snake game in Python'", pty=true)
 ```
 
-### Approval Policies
+## Background Mode (Long Tasks)
 
-```bash
-# Ask on failure
-codex -a on-failure "Your task"
+```
+# Start in background with PTY
+terminal(command="codex exec --sandbox workspace-write 'Refactor the auth module'", workdir="~/project", background=true, pty=true)
+# Returns session_id
 
-# Ask on request
-codex -a on-request "Your task"
+# Monitor progress
+process(action="poll", session_id="<id>")
+process(action="log", session_id="<id>")
 
-# Full auto
-codex --full-auto "Your task"
+# Send input if Codex asks a question
+process(action="submit", session_id="<id>", data="yes")
+
+# Kill if needed
+process(action="kill", session_id="<id>")
 ```
 
-### Environment Variables
+## Key Flags
 
-```bash
-# Set API key
-$env:OPENAI_API_KEY="sk-..."
+| Flag | Effect |
+|------|--------|
+| `exec "prompt"` | One-shot execution, exits when done |
+| `--sandbox workspace-write` (`-s`) | Sandboxed but auto-approves file changes in the workspace (the recommended auto-build mode) |
+| `--dangerously-bypass-approvals-and-sandbox` | No sandbox, no approvals (fastest, most dangerous; `--yolo` still works as a hidden alias) |
+| `--sandbox danger-full-access` | No Codex sandbox; useful when the host service context breaks bubblewrap |
 
-# Enable web search
-codex --search "Your prompt"
+> **Deprecated:** `--full-auto` still works but the live CLI warns to use `--sandbox workspace-write` instead.
+
+## Hermes Gateway Caveat
+
+When invoking the Codex CLI from a Hermes gateway/service context (for example,
+Telegram-driven agent sessions), Codex `workspace-write` sandboxing may fail even
+when the same command works in the user's interactive shell. A typical symptom is
+bubblewrap/user-namespace errors such as `setting up uid map: Permission denied`
+or `loopback: Failed RTM_NEWADDR: Operation not permitted`.
+
+In that context, prefer:
+
+```
+codex exec --sandbox danger-full-access "<task>"
 ```
 
-## 📋 Integration with OpenClaw
+Use process boundaries as the safety layer instead: explicit `workdir`, clean git
+status before launch, narrow task prompts, `git diff` review, targeted tests, and
+human/agent confirmation before committing broad changes.
 
-```python
-import subprocess
+## PR Reviews
 
-def run_codex(prompt: str, model: str = "o3", 
-              sandbox: str = "workspace-write") -> str:
-    """Run Codex headlessly and return the result."""
-    cmd = [
-        "codex", "-p", prompt,
-        "-m", model,
-        "-s", sandbox,
-        "--dangerously-bypass-approvals-and-sandbox"
-    ]
-    
-    result = subprocess.run(
-        cmd,
-        capture_output=True,
-        text=True,
-        timeout=300
-    )
-    
-    return result.stdout if result.returncode == 0 else result.stderr
+Clone to a temp directory for safe review:
+
+```
+terminal(command="REVIEW=$(mktemp -d) && git clone https://github.com/user/repo.git $REVIEW && cd $REVIEW && gh pr checkout 42 && codex review --base origin/main", pty=true)
 ```
 
-## 🎨 Examples
+## Parallel Issue Fixing with Worktrees
 
-### Code Generation
+```
+# Create worktrees
+terminal(command="git worktree add -b fix/issue-78 ~/.hermes/cache/scratch/issue-78 main", workdir="~/project")
+terminal(command="git worktree add -b fix/issue-99 ~/.hermes/cache/scratch/issue-99 main", workdir="~/project")
 
-```bash
-codex exec "Create a Rust struct for a trading order with fields: symbol, side, quantity, price"
+# Launch Codex in each
+terminal(command="codex --sandbox workspace-write exec 'Fix issue #78: <description>. Commit when done.'", workdir="~/.hermes/cache/scratch/issue-78", background=true, pty=true)
+terminal(command="codex --sandbox workspace-write exec 'Fix issue #99: <description>. Commit when done.'", workdir="~/.hermes/cache/scratch/issue-99", background=true, pty=true)
+
+# Monitor
+process(action="list")
+
+# After completion, push and create PRs
+terminal(command="cd ~/.hermes/cache/scratch/issue-78 && git push -u origin fix/issue-78")
+terminal(command="gh pr create --repo user/repo --head fix/issue-78 --title 'fix: ...' --body '...'")
+
+# Cleanup
+terminal(command="git worktree remove ~/.hermes/cache/scratch/issue-78", workdir="~/project")
 ```
 
-### Bug Fix
+## Batch PR Reviews
 
-```bash
-codex exec "Fix the panic in src/trading.rs when balance is zero"
+```
+# Fetch all PR refs
+terminal(command="git fetch origin '+refs/pull/*/head:refs/remotes/origin/pr/*'", workdir="~/project")
+
+# Review multiple PRs in parallel
+terminal(command="codex exec 'Review PR #86. git diff origin/main...origin/pr/86'", workdir="~/project", background=true, pty=true)
+terminal(command="codex exec 'Review PR #87. git diff origin/main...origin/pr/87'", workdir="~/project", background=true, pty=true)
+
+# Post results
+terminal(command="gh pr comment 86 --body '<review>'", workdir="~/project")
 ```
 
-### Code Review
+## Rules
 
-```bash
-codex review --file backend/src/main.rs
-```
-
-### Refactoring
-
-```bash
-codex exec "Refactor this function to use async/await" --file src/old.rs
-```
-
-## ⚠️ Important Notes
-
-- Codex requires authentication via `codex login` or `OPENAI_API_KEY`
-- Use `exec` for headless operation (no TTY required)
-- Sandbox mode controls what Codex can do
-- Default model is `o3` for complex reasoning
-
-## 🔗 Resources
-
-- [Codex CLI Docs](https://developers.openai.com/codex/cli)
-- [Agent Skills](https://developers.openai.com/codex/skills)
-
----
-
-**Version:** 2.0.0  
-**Last Updated:** 2026-02-17
+1. **Always use `pty=true`** — Codex is an interactive terminal app and hangs without a PTY
+2. **Git repo required** — Codex won't run outside a git directory. Use `mktemp -d && git init` for scratch
+3. **Use `exec` for one-shots** — `codex exec "prompt"` runs and exits cleanly
+4. **`--sandbox workspace-write` for building** — auto-approves changes within the sandbox (`--full-auto` is deprecated for this)
+5. **Background for long tasks** — use `background=true` and monitor with `process` tool
+6. **Don't interfere** — monitor with `poll`/`log`, be patient with long-running tasks
+7. **Parallel is fine** — run multiple Codex processes at once for batch work

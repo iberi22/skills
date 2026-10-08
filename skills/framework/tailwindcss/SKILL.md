@@ -1,6 +1,7 @@
 ---
 id: tailwind-css
 name: Tailwind CSS
+description: Tailwind CSS utility, variant and config pitfalls (v3 config model; v4 uses CSS-first config). Use when writing or debugging Tailwind classes or config.
 category: framework
 tags:
   - tailwind-css

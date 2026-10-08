@@ -4,6 +4,7 @@ name: astro
 category: framework
 tags:
   - astro
+description: Use when creating or deploying an Astro static site or blog, setting up multilingual (i18n) content, or hosting it on Cloudflare Pages.
 goals:
   - "Deploy multilingual static websites for free on Cloudflare using Astro framework with markdown source files. Use when: (1) Creating new static sites or blogs, (2) Setting up multilingual (i18n) content, (3) Deploying to Cloudflare Pages, (4) Converting markdown to static websites, (5) Setting up free hosting infrastructure."
 authors:
@@ -126,11 +127,12 @@ src/content/
 ### Content Collection Schema
 
 ```typescript
-// src/content/config.ts
+// src/content.config.ts
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const docs = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/docs' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -236,18 +238,18 @@ Create `public/_redirects`:
 ```astro
 ---
 // src/pages/blog/[...slug].astro
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map(post => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 ---
 
 <article>

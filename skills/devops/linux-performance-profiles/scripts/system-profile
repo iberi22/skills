@@ -1,0 +1,450 @@
+#!/usr/bin/env bash
+# =============================================================================
+# system-profile — Switch Linux system performance profiles
+# =============================================================================
+# Usage:
+#   system-profile              # list available profiles
+#   system-profile <name>       # apply profile
+#   system-profile current      # show current state
+#   system-profile default      # restore default profile
+#
+# Generic: works on any Linux with AMDGPU + Hyprland (optional).
+# Detect which subsystems are available and skip missing ones gracefully.
+# =============================================================================
+set -uo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROFILE_DIR="${SCRIPT_DIR}/profiles"
+STATE_FILE="${SCRIPT_DIR}/.current_state"
+
+# ──────────────────────────────────────────────────────────────────────
+# Color helpers
+# ──────────────────────────────────────────────────────────────────────
+RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
+BLUE='\033[0;34m'; CYAN='\033[0;36m'; NC='\033[0m'
+ok()   { echo -e "  ${GREEN}✓${NC} $1"; }
+info() { echo -e "  ${CYAN}→${NC} $1"; }
+warn() { echo -e "  ${YELLOW}⚠${NC} $1"; }
+fail() { echo -e "  ${RED}✗${NC} $1"; }
+
+# ──────────────────────────────────────────────────────────────────────
+# Detect available subsystems
+# ──────────────────────────────────────────────────────────────────────
+find_amd_gpu() {
+    for card in /sys/class/drm/card*/device/pp_power_profile_mode; do
+        if [ -f "$card" ]; then
+            local dir
+            dir=$(dirname "$card")
+            echo "$dir"
+            return 0
+        fi
+    done
+    return 1
+}
+
+AMDGPU_DIR=""
+AMDGPU_HWMON=""
+AMDGPU_POWER_CAP_MAX=""
+
+if GPU_DIR=$(find_amd_gpu); then
+    AMDGPU_DIR="$GPU_DIR"
+    for hw in "$AMDGPU_DIR"/hwmon/hwmon*/name; do
+        if [ -f "$hw" ] && [ "$(cat "$hw" 2>/dev/null)" = "amdgpu" ]; then
+            AMDGPU_HWMON=$(dirname "$hw")
+            break
+        fi
+    done
+    AMDGPU_POWER_CAP_MAX=$(cat "$AMDGPU_HWMON/power1_cap_max" 2>/dev/null || echo "0")
+    ok "AMD GPU detected"
+else
+    warn "No AMD GPU found (skipping GPU tuning)"
+fi
+
+HAS_HYPRLAND=false
+if command -v hyprctl &>/dev/null; then
+    HAS_HYPRLAND=true
+    ok "Hyprland detected"
+fi
+
+HAS_AUDIO_POWER_SAVE=false
+if [ -w /sys/module/snd_hda_intel/parameters/power_save ]; then
+    HAS_AUDIO_POWER_SAVE=true
+    ok "Audio power_save available"
+fi
+
+# ──────────────────────────────────────────────────────────────────────
+# Apply functions (one per subsystem)
+# ──────────────────────────────────────────────────────────────────────
+apply_cpu() {
+    local gov="$1"
+    [ -z "$gov" ] && return 0
+    if [ ! -w /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ]; then
+        warn "CPU governor not writable"
+        return 0
+    fi
+    local available
+    available=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors 2>/dev/null || echo "")
+    if echo "$available" | grep -qw "$gov"; then
+        for cpu_gov in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+            echo "$gov" > "$cpu_gov" 2>/dev/null || true
+        done
+        ok "CPU governor → $gov"
+    else
+        warn "CPU governor '$gov' not available (have: $available)"
+    fi
+}
+
+apply_gpu_profile() {
+    local profile="$1"
+    [ -z "$AMDGPU_DIR" ] && return 0
+    [ -z "$profile" ] && return 0
+    if [ -w "$AMDGPU_DIR/pp_power_profile_mode" ]; then
+        echo "$profile" > "$AMDGPU_DIR/pp_power_profile_mode" 2>/dev/null
+        local current
+        current=$(cat "$AMDGPU_DIR/pp_power_profile_mode" 2>/dev/null | grep '\*' | grep -oP '^\s*\d+\s+\K\S+' || echo "?")
+        ok "GPU power profile → $current"
+    else
+        warn "Cannot write GPU power profile (try sudo)"
+    fi
+}
+
+apply_gpu_perf() {
+    local level="$1"
+    [ -z "$AMDGPU_DIR" ] && return 0
+    [ -z "$level" ] && return 0
+    if [ -w "$AMDGPU_DIR/power_dpm_force_performance_level" ]; then
+        echo "$level" > "$AMDGPU_DIR/power_dpm_force_performance_level" 2>/dev/null
+        ok "GPU perf level → $level"
+    else
+        warn "Cannot write GPU perf level (try sudo)"
+    fi
+}
+
+apply_gpu_power() {
+    local limit="$1"
+    [ -z "$AMDGPU_HWMON" ] && return 0
+    # "0" or empty = skip (driver default)
+    [ -z "$limit" ] && return 0
+    [ "$limit" = "0" ] && return 0
+    local cap_max="${AMDGPU_POWER_CAP_MAX:-0}"
+    # Clamp to max
+    if [ "$cap_max" -gt 0 ] 2>/dev/null && [ "$limit" -gt "$cap_max" ] 2>/dev/null; then
+        limit="$cap_max"
+        info "Power limit clamped to max: $((limit / 1000000))W"
+    fi
+    if [ -w "$AMDGPU_HWMON/power1_cap" ]; then
+        echo "$limit" > "$AMDGPU_HWMON/power1_cap" 2>/dev/null
+        local actual
+        actual=$(cat "$AMDGPU_HWMON/power1_cap" 2>/dev/null || echo "0")
+        ok "GPU power limit → $((actual / 1000000))W"
+    else
+        warn "Cannot write GPU power cap (try sudo)"
+    fi
+}
+
+apply_sched() {
+    [ -z "$1" ] && return 0
+    local migration_cost="$1" min_gran="$2" wakeup_gran="$3"
+
+    # Kernel 6.18+ renamed/moved some sched files; use sysctl
+    if sysctl -w kernel.sched_migration_cost_ns="$migration_cost" &>/dev/null; then
+        ok "sched_migration_cost_ns → $migration_cost"
+    fi
+    if sysctl -w kernel.sched_min_granularity_ns="$min_gran" &>/dev/null; then
+        ok "sched_min_granularity_ns → $min_gran"
+    fi
+    if sysctl -w kernel.sched_wakeup_granularity_ns="$wakeup_gran" &>/dev/null; then
+        ok "sched_wakeup_granularity_ns → $wakeup_gran"
+    fi
+}
+
+apply_vm() {
+    local dirty="$1" dirty_bg="$2"
+    [ -z "$dirty" ] && return 0
+
+    if [ -w /proc/sys/vm/dirty_ratio ]; then
+        echo "$dirty" > /proc/sys/vm/dirty_ratio 2>/dev/null
+        ok "vm.dirty_ratio → $dirty"
+    fi
+    if [ -w /proc/sys/vm/dirty_background_ratio ]; then
+        echo "$dirty_bg" > /proc/sys/vm/dirty_background_ratio 2>/dev/null
+        ok "vm.dirty_background_ratio → $dirty_bg"
+    fi
+}
+
+apply_audio() {
+    local pwr="$1"
+    [ -z "$pwr" ] && return 0
+    if ! $HAS_AUDIO_POWER_SAVE; then return 0; fi
+    echo "$pwr" > /sys/module/snd_hda_intel/parameters/power_save 2>/dev/null || true
+    ok "Audio power_save → $pwr"
+}
+
+apply_monitor() {
+    local mode="$1"
+    [ -z "$mode" ] && return 0
+    if ! $HAS_HYPRLAND; then return 0; fi
+    local monitor_name
+    monitor_name=$(hyprctl monitors 2>/dev/null | grep "^Monitor " | head -1 | awk '{print $2}')
+    if [ -n "$monitor_name" ] && [ -n "$mode" ]; then
+        hyprctl keyword monitor "$monitor_name","$mode" 2>/dev/null \
+            && ok "Monitor → $monitor_name @ $MONITOR_REFRESH Hz" \
+            || warn "Monitor set failed (not critical)"
+    fi
+}
+
+apply_hyprland_effects() {
+    local strip="$1"
+    if ! $HAS_HYPRLAND; then return 0; fi
+
+    if [ "$strip" = "true" ]; then
+        info "Stripping Hyprland visual effects..."
+        hyprctl keyword animations:enabled 0 2>/dev/null || true
+        hyprctl keyword decoration:rounding 0 2>/dev/null || true
+        hyprctl keyword general:border_size 0 2>/dev/null || true
+        hyprctl keyword general:gaps_in 0 2>/dev/null || true
+        hyprctl keyword general:gaps_out 0 2>/dev/null || true
+        hyprctl keyword decoration:active_opacity 1.0 2>/dev/null || true
+        ok "Hyprland effects stripped (minimal mode)"
+    else
+        info "Restoring Hyprland visual effects..."
+        hyprctl keyword animations:enabled 1 2>/dev/null || true
+        hyprctl keyword decoration:rounding 8 2>/dev/null || true
+        hyprctl keyword general:border_size 2 2>/dev/null || true
+        hyprctl keyword general:gaps_in 4 2>/dev/null || true
+        hyprctl keyword general:gaps_out 8 2>/dev/null || true
+        hyprctl keyword decoration:active_opacity 0.98 2>/dev/null || true
+        ok "Hyprland effects restored"
+    fi
+}
+
+sen_kill_processes() {
+    local procs="$1"
+    [ -z "$procs" ] && return 0
+    info "Terminating UI processes..."
+    for p in $procs; do
+        if pkill -f "$p" 2>/dev/null; then
+            ok "Killed: $p"
+        fi
+    done
+}
+
+sen_stop_services() {
+    local svcs="$1"
+    [ -z "$svcs" ] && return 0
+    info "Stopping user services..."
+    for svc in $svcs; do
+        if systemctl --user stop "$svc" 2>/dev/null; then
+            ok "Stopped: $svc"
+        fi
+    done
+}
+
+sen_suspend_processes() {
+    local procs="$1"
+    [ -z "$procs" ] && return 0
+    info "Suspending background processes..."
+    for p in $procs; do
+        if pkill -STOP -f "$p" 2>/dev/null; then
+            ok "Suspended: $p"
+        fi
+    done
+}
+
+# ──────────────────────────────────────────────────────────────────────
+# State persistence (for restoring from 'sen' mode)
+# ──────────────────────────────────────────────────────────────────────
+save_state() {
+    local profile="$1"
+    mkdir -p "$(dirname "$STATE_FILE")"
+    cat > "$STATE_FILE" <<-EOF
+PROFILE=$profile
+TIMESTAMP=$(date +%s)
+EOF
+    ok "State saved: $profile"
+}
+
+read_state() {
+    if [ -f "$STATE_FILE" ]; then
+        . "$STATE_FILE"
+        echo "$PROFILE"
+    else
+        echo "default"
+    fi
+}
+
+# ──────────────────────────────────────────────────────────────────────
+# Load and apply a profile
+# ──────────────────────────────────────────────────────────────────────
+apply_profile() {
+    local profile_name="$1"
+    local profile_file="${PROFILE_DIR}/${profile_name}.conf"
+
+    if [ ! -f "$profile_file" ]; then
+        fail "Profile '$profile_name' not found at $profile_file"
+        echo ""
+        echo "Available profiles:"
+        list_profiles
+        return 1
+    fi
+
+    echo ""
+    echo -e "${BLUE}═══ Applying profile: ${CYAN}${profile_name}${NC} ═══"
+    echo ""
+
+    # Source the profile with clean variables
+    unset CPU_GOVERNOR GPU_POWER_PROFILE GPU_PERF_LEVEL GPU_POWER_LIMIT
+    unset SCHED_MIGRATION_COST SCHED_MIN_GRANULARITY SCHED_WAKEUP_GRANULARITY
+    unset VM_DIRTY_RATIO VM_DIRTY_BG_RATIO
+    unset AUDIO_POWER_SAVE
+    unset MONITOR_REFRESH MONITOR_MODE
+    unset SEN_KILL_PROCESSES SEN_SUSPEND_PROCESSES SEN_STOP_SERVICES SEN_DISABLE_EFFECTS
+
+    # shellcheck disable=SC1090
+    . "$profile_file"
+
+    # Apply: safe order (CPU first, GPU last)
+    apply_cpu "${CPU_GOVERNOR:-}"
+    apply_vm "${VM_DIRTY_RATIO:-}" "${VM_DIRTY_BG_RATIO:-}"
+    apply_audio "${AUDIO_POWER_SAVE:-}"
+    apply_sched "${SCHED_MIGRATION_COST:-}" "${SCHED_MIN_GRANULARITY:-}" "${SCHED_WAKEUP_GRANULARITY:-}"
+    apply_monitor "${MONITOR_MODE:-}"
+    apply_gpu_power "${GPU_POWER_LIMIT:-}"
+    apply_gpu_profile "${GPU_POWER_PROFILE:-}"
+    apply_gpu_perf "${GPU_PERF_LEVEL:-}"
+
+    # Profile-specific post-apply
+    if [ "$profile_name" = "sen" ]; then
+        echo ""
+        echo -e "${YELLOW}── Sen mode extras ──${NC}"
+        echo ""
+        apply_hyprland_effects "true"
+        sen_stop_services "${SEN_STOP_SERVICES:-}"
+        sen_suspend_processes "${SEN_SUSPEND_PROCESSES:-}"
+        sen_kill_processes "${SEN_KILL_PROCESSES:-}"
+    elif [ "$profile_name" = "default" ] || [ "$profile_name" = "gaming" ]; then
+        local previous
+        previous=$(read_state)
+        if [ "$previous" = "sen" ]; then
+            apply_hyprland_effects "false"
+        fi
+    fi
+
+    echo ""
+    echo -e "${GREEN}═══ Profile '${profile_name}' applied${NC} ═══"
+    echo ""
+
+    save_state "$profile_name"
+}
+
+# ──────────────────────────────────────────────────────────────────────
+# List profiles
+# ──────────────────────────────────────────────────────────────────────
+list_profiles() {
+    local current
+    current=$(read_state)
+    for f in "$PROFILE_DIR"/*.conf; do
+        [ -f "$f" ] || continue
+        local name
+        name=$(basename "$f" .conf)
+        local desc=""
+        desc=$(grep "^description=" "$f" | head -1 | cut -d'"' -f2)
+        if [ "$name" = "$current" ]; then
+            echo -e "  ${GREEN}▶ ${name}${NC}  — ${desc:-}"
+        else
+            echo -e "    ${name}  — ${desc:-}"
+        fi
+    done
+}
+
+show_current() {
+    local current
+    current=$(read_state)
+    echo -e "${CYAN}Current profile: ${GREEN}$current${NC}"
+    echo ""
+
+    echo "CPU:"
+    if [ -f /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ]; then
+        ok "Governor: $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)"
+    fi
+    if [ -f /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq ]; then
+        local freq
+        freq=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq)
+        ok "Freq: $((freq / 1000)) MHz"
+    fi
+
+    echo "GPU:"
+    if [ -n "$AMDGPU_DIR" ]; then
+        ok "Profile: $(cat "$AMDGPU_DIR/pp_power_profile_mode" 2>/dev/null | grep '\*' | grep -oP '^\s*\d+\s+\K\S+' || echo 'N/A')"
+        ok "Perf level: $(cat "$AMDGPU_DIR/power_dpm_force_performance_level" 2>/dev/null || echo 'N/A')"
+        if [ -n "$AMDGPU_HWMON" ]; then
+            ok "Power cap: $(( $(cat "$AMDGPU_HWMON/power1_cap" 2>/dev/null || echo 0) / 1000000 ))W"
+            ok "Temp: $(( $(cat "$AMDGPU_HWMON/temp1_input" 2>/dev/null || echo 0) / 1000 ))°C"
+        fi
+    fi
+
+    echo "VM:"
+    ok "dirty_ratio: $(cat /proc/sys/vm/dirty_ratio 2>/dev/null)"
+    ok "dirty_bg_ratio: $(cat /proc/sys/vm/dirty_background_ratio 2>/dev/null)"
+
+    echo "Audio:"
+    if [ -f /sys/module/snd_hda_intel/parameters/power_save ]; then
+        ok "power_save: $(cat /sys/module/snd_hda_intel/parameters/power_save)"
+    fi
+
+    if $HAS_HYPRLAND; then
+        echo "Display:"
+        hyprctl monitors 2>/dev/null | grep -E "Monitor|@|refreshRate" | head -5 | while IFS= read -r line; do
+            ok "$line"
+        done
+    fi
+
+    echo ""
+    echo -e "Use ${CYAN}system-profile <name>${NC} to switch."
+}
+
+# ──────────────────────────────────────────────────────────────────────
+# Main
+# ──────────────────────────────────────────────────────────────────────
+main() {
+    local cmd="${1:-}"
+
+    case "$cmd" in
+        "")
+            echo ""
+            echo -e "${BLUE}Linux System Profiles${NC}"
+            echo -e "${CYAN}Usage:${NC} system-profile <profile-name>"
+            echo ""
+            echo "Available profiles:"
+            list_profiles
+            echo ""
+            echo -e "Current: $(read_state)"
+            echo ""
+            ;;
+        "current"|"status")
+            show_current
+            ;;
+        "list"|"ls")
+            list_profiles
+            ;;
+        "--help"|"-h"|"help")
+            echo "Usage: system-profile [profile-name|current|list]"
+            echo ""
+            echo "Profiles:"
+            list_profiles
+            ;;
+        *)
+            if [ -f "${PROFILE_DIR}/${cmd}.conf" ]; then
+                apply_profile "$cmd"
+            else
+                fail "Unknown profile: $cmd"
+                echo ""
+                echo "Available:"
+                list_profiles
+                exit 1
+            fi
+            ;;
+    esac
+}
+
+main "$@"

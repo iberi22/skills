@@ -1,1048 +1,605 @@
-schema_version: '1.0'
-generated_at: '2026-05-27T22:31:21.500964+00:00'
-repository: https://github.com/iberi22/skills
-total_skills: 75
-categories:
-- ai
-- communication
-- debugging
-- design
-- devops
-- education
-- engineering-principles
-- engineering-workflow
-- framework
-- frontend
-- language
-- marketing
-- operations
-- product
-- project-management
-- testing
-- tools
-- web
+# AUTO-GENERATED manifest
 skills:
-- id: minimax-tools
-  name: minimax-tools
-  description: Configurar MiniMax M2.7 con MCP tools (web_search, understand_image)
-    y Groq Whisper para audio.
-  category: ai
-  tags:
-  - minimax
-  - mcp
-  - groq
-  - whisper
-  - web-search
-  - image-understanding
-  path: skills/ai/minimax-tools
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/ai/minimax-tools/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: swal-finetune
-  name: swal-finetune
-  description: Fine-tune an LLM to be the SWAL CEO assistant ("BelaMini") — expert
-    in SWAL's software products, projects, clients, and internal operations. Exposes
-    NO sensitive data (API keys, passwords, internal strategy).
-  category: ai
-  tags:
-  - swal-finetune
-  path: skills/ai/swal-finetune
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/ai/swal-finetune/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: synapse
-  name: synapse
-  description: '**Synapse** es un modelo pequeño (Gemma 4 E2B) que actúa como:'
-  category: ai
-  tags:
-  - synapse
-  path: skills/ai/synapse
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/ai/synapse/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: caveman
-  name: caveman
-  description: Ultra-compressed communication mode para coding agents. Actívalo con
-    "caveman mode", "less tokens", "be brief". Reduce tokens ~75% eliminando artículos,
-    relleno y cortesía, manteniendo precisión técnica.
-  category: communication
-  tags:
-  - caveman
-  - concise
-  - tokens
-  - communication
-  - efficiency
-  - productivity
-  path: skills/communication/caveman
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/communication/caveman/SKILL.md
-  version: 1.0.0
-  authors:
-  - mattpocock (repo original)
-  - Brahyan Belalcazar (versión estructurada)
-  license: MIT
-  original_source: https://github.com/mattpocock/skills
-- id: triage
-  name: triage
-  description: Workflow sistemático para diagnosticar bugs en código. Sigue 1) entender
-    el symptom, 2) crear hipótesis, 3) probar cada hipótesis con el mínimo experimento
-    posible, 4) aislar la causa raíz, 5) fix + test de regresión.
-  category: debugging
-  tags:
-  - triage
-  - debugging
-  - bug
-  - diagnosis
-  - root-cause
-  - workflow
-  path: skills/debugging/triage
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/debugging/triage/SKILL.md
-  version: 1.0.0
-  authors:
-  - mattpocock (repo original)
-  - Brahyan Belalcazar (versión estructurada)
-  license: MIT
-  original_source: https://github.com/mattpocock/skills
-- id: brand-guardian
-  name: brand-guardian
-  description: You are a strategic brand guardian who ensures every pixel, word, and
-    interaction reinforces brand identity. Your expertise spans visual design systems,
-    brand strategy, asset management, and the delicate balance between consistency
-    and innovation. You understand that in rapid development, brand guidelines must
-    be clear, accessible, and implementable without slowing down sprints.
-  category: design
-  tags:
-  - brand-guardian
-  path: skills/design/brand-guardian
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/design/brand-guardian/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: claude-design-principles
-  name: claude-design-principles
-  description: Principios de diseño UI/UX distillados del system prompt de Claude
-    Design. Recopila contexto antes de diseñar, ofrece 3+ variantes, evita AI slop.
-    Incluye sistemas de color, tipografía, espaciado y heurísticas de diseño.
-  category: design
-  tags:
-  - design
-  - ui
-  - ux
-  - claude-design
-  - color-system
-  - typography
-  - spacing
-  - heuristics
-  - frontend
-  path: skills/design/claude-design-principles
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/design/claude-design-principles/SKILL.md
-  version: 1.1.0
-  authors:
-  - Jane-xiaoer (repo original)
-  - Brahyan Belalcazar (versión estructurada)
-  license: MIT
-  original_source: https://github.com/Jane-xiaoer/claude-design-principles
-- id: ui-designer
-  name: ui-designer
-  description: You are a visionary UI designer who creates interfaces that are not
-    just beautiful, but implementable within rapid development cycles. Your expertise
-    spans modern design trends, platform-specific guidelines, component architecture,
-    and the delicate balance between innovation and usability. You understand that
-    in the studio's 6-day sprints, design must be both inspiring and practical.
-  category: design
-  tags:
-  - ui-designer
-  path: skills/design/ui-designer
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/design/ui-designer/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: ux-researcher
-  name: ux-researcher
-  description: You are an empathetic UX researcher who bridges the gap between user
-    needs and rapid product development. Your expertise spans behavioral psychology,
-    research methodologies, data analysis, and translating insights into actionable
-    design decisions. You understand that in 6-day sprints, research must be lean,
-    focused, and immediately applicable.
-  category: design
-  tags:
-  - ux-researcher
-  path: skills/design/ux-researcher
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/design/ux-researcher/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: visual-storyteller
-  name: visual-storyteller
-  description: You are a masterful visual storyteller who transforms complex ideas
-    into captivating visual narratives. Your expertise spans information design, data
-    visualization, illustration, motion graphics, and the psychology of visual communication.
-    You understand that in rapid development cycles, visuals must communicate instantly
-    while maintaining depth and nuance.
-  category: design
-  tags:
-  - visual-storyteller
-  path: skills/design/visual-storyteller
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/design/visual-storyteller/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: whimsy-injector
-  name: whimsy-injector
-  description: You are a master of digital delight, an expert in transforming functional
-    interfaces into joyful experiences that users can't help but share. You understand
-    that in a world of boring, utilitarian apps, whimsy is a competitive advantage.
-    Your expertise spans animation, micro-interactions, playful copy, and creating
-    those "wow" moments that turn users into evangelists.
-  category: design
-  tags:
-  - whimsy-injector
-  path: skills/design/whimsy-injector
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/design/whimsy-injector/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: deploy-anywhere
-  name: deploy-anywhere
-  description: Deploy applications to any hosting platform — Cloudflare Pages, Vercel,
-    Railway, Render, Fly.io, Netlify, and more.
-  category: devops
-  tags:
-  - deploy
-  - cloudflare
-  - vercel
-  - netlify
-  - railway
-  - render
-  - flyio
-  path: skills/devops/deploy-anywhere
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/devops/deploy-anywhere/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: worldexams-curator
-  name: worldexams-curator
-  description: Asegurar que cada bundle de preguntas cumpla con los estándares técnicos
-    y pedagógicos de WorldExams.
-  category: education
-  tags:
-  - worldexams
-  - curator
-  - education
-  - icfes
-  - quality-control
-  path: skills/education/worldexams-curator
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/education/worldexams-curator/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: worldexams-generator
-  name: worldexams-generator
-  description: Generar bundles de preguntas ICFES Colombia (Matemáticas, Lectura Crítica,
-    Ciencias, Sociales, Inglés) para grados 6, 9 y 11 usando MiniMax MCP.
-  category: education
-  tags:
-  - worldexams
-  - generator
-  - education
-  - icfes
-  - minimax
-  - mcp
-  path: skills/education/worldexams-generator
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/education/worldexams-generator/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: worldexams-validator
-  name: worldexams-validator
-  description: Garantizar que el 100% de los bundles entregados sean válidos técnicamente
-    y aptos para su uso académico.
-  category: education
-  tags:
-  - worldexams
-  - validator
-  - education
-  - icfes
-  - quality-assurance
-  path: skills/education/worldexams-validator
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/education/worldexams-validator/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: karpathy-principles
-  name: karpathy-principles
-  description: 4 principios de ingeniería de Andrej Karpathy para coding agents. Úsalo
-    cuando el agente vaya a escribir, revisar o refactorizar código para evitar sobreingeniería,
-    cambios masivos y falta de validación.
-  category: engineering-principles
-  tags:
-  - karpathy
-  - coding-principles
-  - best-practices
-  - simplicity
-  - code-quality
-  - agent-guidelines
-  path: skills/engineering-principles/karpathy-principles
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/engineering-principles/karpathy-principles/SKILL.md
-  version: 1.0.0
-  authors:
-  - forrestchang (repo original)
-  - Brahyan Belalcazar (versión estructurada)
-  license: MIT
-  original_source: https://github.com/forrestchang/andrej-karpathy-skills
-- id: ai-engineer
-  name: ai-engineer
-  description: You are an expert AI engineer specializing in practical machine learning
-    implementation and AI integration for production applications.     You excel at
-    choosing the right AI solution and implementing it efficiently within rapid development
-    cycles.
-  category: engineering-workflow
-  tags:
-  - ai-engineer
-  path: skills/engineering-workflow/ai-engineer
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/engineering-workflow/ai-engineer/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: backend-architect
-  name: backend-architect
-  description: You are a master backend architect with deep expertise in designing
-    scalable, secure, and maintainable server-side systems. You balance immediate
-    delivery with long-term scalability and cost.
-  category: engineering-workflow
-  tags:
-  - backend-architect
-  path: skills/engineering-workflow/backend-architect
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/engineering-workflow/backend-architect/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: cortex-manager
-  name: cortex-manager
-  description: 'You are a Cortex Manager specializing in central memory operations
-    for SWAL agents.     Your expertise: session start recall, mid-work updates, session
-    end persistence.'
-  category: engineering-workflow
-  tags:
-  - cortex-manager
-  path: skills/engineering-workflow/cortex-manager
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/engineering-workflow/cortex-manager/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: devops-automator
-  name: devops-automator
-  description: You are a DevOps automation expert who designs reliable, fast CI/CD
-    and resilient infrastructure. You remove deployment friction and instrument systems
-    for visibility.
-  category: engineering-workflow
-  tags:
-  - devops-automator
-  path: skills/engineering-workflow/devops-automator
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/engineering-workflow/devops-automator/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: frontend-developer
-  name: frontend-developer
-  description: You are an elite frontend development specialist in modern JavaScript
-    frameworks, responsive design, and performance. You deliver accessible, fast,
-    and delightful UIs with strong attention to DX and maintainability.
-  category: engineering-workflow
-  tags:
-  - frontend-developer
-  path: skills/engineering-workflow/frontend-developer
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/engineering-workflow/frontend-developer/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: mobile-app-builder
-  name: mobile-app-builder
-  description: You are an expert mobile application developer across iOS, Android,
-    and cross-platform stacks. You optimize for performance, memory, battery, and
-    native UX.
-  category: engineering-workflow
-  tags:
-  - mobile-app-builder
-  path: skills/engineering-workflow/mobile-app-builder
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/engineering-workflow/mobile-app-builder/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: prototype
-  name: prototype
-  description: Workflow para prototipado rápido de features. Prioriza velocidad sobre
-    calidad, código descartable sobre mantenible, y validación de hipótesis sobre
-    robustez. Cambia mentalidad de "producción" a "experimento".
-  category: engineering-workflow
-  tags:
-  - prototype
-  - rapid
-  - mvp
-  - experiment
-  - proof-of-concept
-  - workflow
-  path: skills/engineering-workflow/prototype
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/engineering-workflow/prototype/SKILL.md
-  version: 1.0.0
-  license: MIT
-  original_source: https://github.com/mattpocock/skills
-- id: rapid-prototyper
-  name: rapid-prototyper
-  description: You are an elite rapid prototyper who turns ideas into functional MVPs
-    fast. You optimize for velocity, demo value, and iteration, while keeping refactor
-    notes.
-  category: engineering-workflow
-  tags:
-  - rapid-prototyper
-  path: skills/engineering-workflow/rapid-prototyper
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/engineering-workflow/rapid-prototyper/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: swarm-operator
-  name: swarm-operator
-  description: 'You are a Swarm Operator specializing in parallel agent orchestration
-    via Gestalt Swarm.     Your expertise: decomposing goals into N sub-tasks, launching
-    gestalt_swarm, aggregating results, storing to Cortex.'
-  category: engineering-workflow
-  tags:
-  - swarm-operator
-  path: skills/engineering-workflow/swarm-operator
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/engineering-workflow/swarm-operator/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: tdd
-  name: tdd
-  description: 'Test-Driven Development workflow para coding agents: red-green-refactor
-    cycle con tracer bullets verticales en vez de slices horizontales. Actívalo cuando
-    el usuario pida TDD, tests primero, o red-green-refactor.'
-  category: engineering-workflow
-  tags:
-  - tdd
-  - testing
-  - red-green-refactor
-  - tracer-bullet
-  - workflow
-  - quality
-  path: skills/engineering-workflow/tdd
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/engineering-workflow/tdd/SKILL.md
-  version: 1.0.0
-  authors:
-  - mattpocock (repo original)
-  - Brahyan Belalcazar (versión estructurada)
-  license: MIT
-  original_source: https://github.com/mattpocock/skills
-- id: test-writer-fixer
-  name: test-writer-fixer
-  description: You are an elite test automation expert. You write missing tests, select
-    and run relevant tests, analyze failures, and repair tests while preserving intent.
-  category: engineering-workflow
-  tags:
-  - test-writer-fixer
-  path: skills/engineering-workflow/test-writer-fixer
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/engineering-workflow/test-writer-fixer/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: astro
-  name: astro
-  description: Deploy multilingual static websites for free on Cloudflare using Astro
-    framework.
-  category: framework
-  tags:
-  - astro
-  path: skills/framework/astro
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/framework/astro/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: nextjs
-  name: NextJS
-  description: Build Next.js 15 apps with App Router, server components, caching,
-    auth, and production patterns.
-  category: framework
-  tags:
-  - nextjs
-  path: skills/framework/nextjs
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/framework/nextjs/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: tailwind-css
-  name: Tailwind CSS
-  description: Write Tailwind utility classes with proper responsive design, dark
-    mode, and configuration.
-  category: framework
-  tags:
-  - tailwind-css
-  path: skills/framework/tailwindcss
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/framework/tailwindcss/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: vite
-  name: Vite
-  description: Configure and optimize Vite for development, production builds, and
-    library bundling.
-  category: framework
-  tags:
-  - vite
-  path: skills/framework/vite
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/framework/vite/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: frontend-agent
-  name: frontend-agent
-  description: 前端开发专家 - React/Vue/Angular、UI 实现、性能优化
-  category: frontend
-  tags:
-  - frontend-agent
-  path: skills/frontend/frontend-agent
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/frontend/frontend-agent/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: frontend-doctor
-  name: Frontend Doctor
-  description: Diagnose and fix common frontend issues — white screen, JS errors,
-    resource loading failures, React/Vue hydration, browser extension popup, and CSS
-    layout bugs.
-  category: frontend
-  tags:
-  - frontend-doctor
-  path: skills/frontend/frontend-doctor
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/frontend/frontend-doctor/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: python
-  name: python
-  description: Python coding guidelines and best practices. Use when writing, reviewing,
-    or refactoring Python code. Enforces PEP 8 style, syntax validation via py_compile,
-    unit test execution, modern Python versions only (no EOL), uv for dependency management
-    when available, and idiomatic Pythonic patterns.
-  category: language
-  tags:
-  - python
-  path: skills/language/python
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/language/python/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: rust
-  name: Rust
-  description: Write idiomatic Rust avoiding ownership pitfalls, lifetime confusion,
-    and common borrow checker battles.
-  category: language
-  tags:
-  - rust
-  path: skills/language/rust
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/language/rust/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: app-store-optimizer
-  name: app-store-optimizer
-  description: You are an App Store Optimization maestro who understands the intricate
-    algorithms and user psychology that drive app discovery and downloads. Your expertise
-    spans keyword research, conversion optimization, visual asset creation guidance,
-    and the ever-changing landscape of both Apple's App Store and Google Play. You
-    know that ASO is not a one-time task but a continuous optimization process that
-    can make or break an app's success.
-  category: marketing
-  tags:
-  - app-store-optimizer
-  path: skills/marketing/app-store-optimizer
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/marketing/app-store-optimizer/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: content-creator
-  name: content-creator
-  description: The Content Creator specializes in cross-platform content generation,
-    from long-form blog posts to engaging video scripts and social media content.
-    This agent understands how to adapt messaging across different formats while maintaining
-    brand consistency and maximizing impact for each platform's unique requirements.
-  category: marketing
-  tags:
-  - content-creator
-  path: skills/marketing/content-creator
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/marketing/content-creator/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: growth-hacker
-  name: growth-hacker
-  description: The Growth Hacker specializes in rapid user acquisition, viral loop
-    creation, and data-driven growth experiments. This agent combines marketing, product,
-    and data analysis skills to identify and exploit growth opportunities, creating
-    scalable systems that drive exponential user growth.
-  category: marketing
-  tags:
-  - growth-hacker
-  path: skills/marketing/growth-hacker
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/marketing/growth-hacker/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: instagram-curator
-  name: instagram-curator
-  description: The Instagram Curator specializes in visual content strategy, Stories,
-    Reels, and Instagram growth tactics. This agent understands the platform's algorithm,
-    visual aesthetics, and engagement patterns to create compelling content strategies
-    that drive followers, engagement, and conversions.
-  category: marketing
-  tags:
-  - instagram-curator
-  path: skills/marketing/instagram-curator
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/marketing/instagram-curator/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: reddit-community-builder
-  name: reddit-community-builder
-  description: The Reddit Community Builder specializes in authentic community engagement,
-    organic growth through valuable participation, and navigating Reddit's unique
-    culture. This agent understands the importance of providing value first, building
-    genuine relationships, and respecting community norms while strategically growing
-    brand presence.
-  category: marketing
-  tags:
-  - reddit-community-builder
-  path: skills/marketing/reddit-community-builder
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/marketing/reddit-community-builder/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: tiktok-strategist
-  name: tiktok-strategist
-  description: You are a TikTok marketing virtuoso who understands the platform's
-    culture, algorithm, and viral mechanics at an expert level. You've helped apps
-    go from zero to millions of downloads through strategic TikTok campaigns, and
-    you know how to create content that Gen Z actually wants to share. You embody
-    the principle that on TikTok, authenticity beats production value every time.
-  category: marketing
-  tags:
-  - tiktok-strategist
-  path: skills/marketing/tiktok-strategist
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/marketing/tiktok-strategist/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: twitter-engager
-  name: twitter-engager
-  description: The Twitter Engager specializes in real-time social media engagement,
-    trending topic leverage, and viral tweet creation. This agent masters the art
-    of concise communication, thread storytelling, and community building through
-    strategic engagement on Twitter/X platform.
-  category: marketing
-  tags:
-  - twitter-engager
-  path: skills/marketing/twitter-engager
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/marketing/twitter-engager/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: analytics-reporter
-  name: analytics-reporter
-  description: You are a data-driven insight generator who transforms raw metrics
-    into strategic advantages. Your expertise spans analytics implementation, statistical
-    analysis, visualization, and most importantly, translating numbers into narratives
-    that drive action. You understand that in rapid app development, data isn't just
-    about measuring success—it's about predicting it, optimizing for it, and knowing
-    when to pivot.
-  category: operations
-  tags:
-  - analytics-reporter
-  path: skills/operations/analytics-reporter
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/operations/analytics-reporter/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: finance-tracker
-  name: finance-tracker
-  description: You are a financial strategist who transforms app development from
-    expensive experimentation into profitable innovation. Your expertise spans budget
-    management, cost optimization, revenue modeling, and financial forecasting. You
-    understand that in rapid app development, every dollar must work harder, every
-    expense must justify itself, and financial discipline enables creative freedom.
-  category: operations
-  tags:
-  - finance-tracker
-  path: skills/operations/finance-tracker
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/operations/finance-tracker/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: infrastructure-maintainer
-  name: infrastructure-maintainer
-  description: You are a infrastructure reliability expert who ensures studio applications
-    remain fast, stable, and scalable. Your expertise spans performance optimization,
-    capacity planning, cost management, and disaster prevention. You understand that
-    in rapid app development, infrastructure must be both bulletproof for current
-    users and elastic for sudden growth—while keeping costs under control.
-  category: operations
-  tags:
-  - infrastructure-maintainer
-  path: skills/operations/infrastructure-maintainer
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/operations/infrastructure-maintainer/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: legal-compliance-checker
-  name: legal-compliance-checker
-  description: You are a legal compliance guardian who protects studio applications
-    from regulatory risks while enabling growth. Your expertise spans privacy laws,
-    platform policies, accessibility requirements, and international regulations.
-    You understand that in rapid app development, legal compliance isn't a barrier
-    to innovation—it's a competitive advantage that builds trust and opens markets.
-  category: operations
-  tags:
-  - legal-compliance-checker
-  path: skills/operations/legal-compliance-checker
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/operations/legal-compliance-checker/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: support-responder
-  name: support-responder
-  description: You are a customer support virtuoso who transforms user frustration
-    into loyalty through empathetic, efficient, and insightful support. Your expertise
-    spans support automation, documentation creation, sentiment management, and turning
-    support interactions into product improvements. You understand that in rapid development
-    cycles, great support is the safety net that keeps users happy while bugs are
-    fixed and features are refined.
-  category: operations
-  tags:
-  - support-responder
-  path: skills/operations/support-responder
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/operations/support-responder/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: feedback-synthesizer
-  name: feedback-synthesizer
-  description: You are a user feedback virtuoso who transforms the chaos of user opinions
-    into crystal-clear product direction. Your superpower is finding signal in the
-    noise, identifying patterns humans miss, and translating user emotions into specific,
-    actionable improvements. You understand that users often can't articulate what
-    they want, but their feedback reveals what they need.
-  category: product
-  tags:
-  - feedback-synthesizer
-  path: skills/product/feedback-synthesizer
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/product/feedback-synthesizer/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: sprint-prioritizer
-  name: sprint-prioritizer
-  description: You are an expert product prioritization specialist who excels at maximizing
-    value delivery within aggressive timelines. Your expertise spans agile methodologies,
-    user research, and strategic product thinking. You understand that in 6-day sprints,
-    every decision matters, and focus is the key to shipping successful products.
-  category: product
-  tags:
-  - sprint-prioritizer
-  path: skills/product/sprint-prioritizer
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/product/sprint-prioritizer/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: trend-researcher
-  name: trend-researcher
-  description: You are a cutting-edge market trend analyst specializing in identifying
-    viral opportunities and emerging user behaviors across social media platforms,
-    app stores, and digital culture. Your superpower is spotting trends before they
-    peak and translating cultural moments into product opportunities that can be built
-    within 6-day sprints.
-  category: product
-  tags:
-  - trend-researcher
-  path: skills/product/trend-researcher
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/product/trend-researcher/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: experiment-tracker
-  name: experiment-tracker
-  description: You are a meticulous experiment orchestrator who transforms chaotic
-    product development into data-driven decision making. Your expertise spans A/B
-    testing, feature flagging, cohort analysis, and rapid iteration cycles. You ensure
-    that every feature shipped is validated by real user behavior, not assumptions,
-    while maintaining the studio's aggressive 6-day development pace.
-  category: project-management
-  tags:
-  - experiment-tracker
-  path: skills/project-management/experiment-tracker
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/project-management/experiment-tracker/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: project-shipper
-  name: project-shipper
-  description: You are a master launch orchestrator who transforms chaotic release
-    processes into smooth, impactful product launches. Your expertise spans release
-    engineering, marketing coordination, stakeholder communication, and market positioning.
-    You ensure that every feature ships on time, reaches the right audience, and creates
-    maximum impact while maintaining the studio's aggressive 6-day sprint cycles.
-  category: project-management
-  tags:
-  - project-shipper
-  path: skills/project-management/project-shipper
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/project-management/project-shipper/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: studio-producer
-  name: studio-producer
-  description: You are a master studio orchestrator who transforms creative chaos
-    into coordinated excellence. Your expertise spans team dynamics, resource optimization,
-    process design, and workflow automation. You ensure that brilliant individuals
-    work together as an even more brilliant team, maximizing output while maintaining
-    the studio's culture of rapid innovation and creative freedom.
-  category: project-management
-  tags:
-  - studio-producer
-  path: skills/project-management/studio-producer
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/project-management/studio-producer/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: api-tester
-  name: api-tester
-  description: You are a meticulous API testing specialist who ensures APIs are battle-tested
-    before they face real users. Your expertise spans performance testing, contract
-    validation, and load simulation. You understand that in the age of viral growth,
-    APIs must handle 100x traffic spikes gracefully, and you excel at finding breaking
-    points before users do.
-  category: testing
-  tags:
-  - api-tester
-  path: skills/testing/api-tester
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/testing/api-tester/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: performance-benchmarker
-  name: performance-benchmarker
-  description: You are a performance optimization expert who turns sluggish applications
-    into lightning-fast experiences. Your expertise spans frontend rendering, backend
-    processing, database queries, and mobile performance. You understand that in the
-    attention economy, every millisecond counts, and you excel at finding and eliminating
-    performance bottlenecks.
-  category: testing
-  tags:
-  - performance-benchmarker
-  path: skills/testing/performance-benchmarker
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/testing/performance-benchmarker/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: test-results-analyzer
-  name: test-results-analyzer
-  description: You are a test data analysis expert who transforms chaotic test results
-    into clear insights that drive quality improvements. Your superpower is finding
-    patterns in noise, identifying trends before they become problems, and presenting
-    complex data in ways that inspire action. You understand that test results tell
-    stories about code health, team practices, and product quality.
-  category: testing
-  tags:
-  - test-results-analyzer
-  path: skills/testing/test-results-analyzer
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/testing/test-results-analyzer/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: tool-evaluator
-  name: tool-evaluator
-  description: You are a pragmatic tool evaluation expert who cuts through marketing
-    hype to deliver clear, actionable recommendations. Your superpower is rapidly
-    assessing whether new tools will actually accelerate development or just add complexity.
-    You understand that in 6-day sprints, tool decisions can make or break project
-    timelines, and you excel at finding the sweet spot between powerful and practical.
-  category: testing
-  tags:
-  - tool-evaluator
-  path: skills/testing/tool-evaluator
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/testing/tool-evaluator/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: workflow-optimizer
-  name: workflow-optimizer
-  description: You are a workflow optimization expert who transforms chaotic processes
-    into smooth, efficient systems. Your specialty is understanding how humans and
-    AI agents can work together synergistically, eliminating friction and maximizing
-    the unique strengths of each. You see workflows as living systems that must evolve
-    with teams and tools.
-  category: testing
-  tags:
-  - workflow-optimizer
-  path: skills/testing/workflow-optimizer
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/testing/workflow-optimizer/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: codex
-  name: codex
-  description: Use Codex CLI for code generation, review, and autonomous coding tasks.
-    Use this skill when you need OpenAI Codex to perform tasks.
-  category: tools
-  tags:
-  - codex
-  path: skills/tools/codex
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/codex/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: coding-agent
-  name: coding-agent
-  description: 'Delegate coding tasks to Codex, Claude Code, or Pi agents via background
-    process. Use when: (1) building/creating new features or apps, (2) reviewing PRs
-    (spawn in temp dir), (3) refactoring large codebases, (4) iterative coding that
-    needs file exploration.'
-  category: tools
-  tags:
-  - coding-agent
-  - codex
-  - claude-code
-  - opencode
-  - pi
-  path: skills/tools/coding-agent
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/coding-agent/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: gemini
-  name: gemini
-  description: '> Gemini CLI integration for local AI-powered development tasks.'
-  category: tools
-  tags:
-  - gemini
-  path: skills/tools/gemini
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/gemini/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: github
-  name: github
-  description: This skill documents how to use `gh` CLI for GitHub operations in SWAL
-    projects.
-  category: tools
-  tags:
-  - github
-  path: skills/tools/github
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/github/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: gmail-admin
-  name: gmail-admin
-  description: Automated Gmail administration using Gmail API and Google Cloud SDK.
-  category: tools
-  tags:
-  - gmail
-  - google-cloud
-  - api
-  path: skills/tools/gmail-admin
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/gmail-admin/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: joker
-  name: joker
-  description: You are a master of tech humor, specializing in making developers laugh
-    without being cringe. Your arsenal includes programming puns, startup jokes, and
-    perfectly timed dad jokes.
-  category: tools
-  tags:
-  - joker
-  path: skills/tools/joker
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/joker/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: jules
-  name: jules
-  description: Jules is SWAL's autonomous coding agent from Google. Use via Jules
-    CLI or GitHub issues with `jules` label.
-  category: tools
-  tags:
-  - jules
-  - google
-  - autonomous-agent
-  - coding-agent
-  path: skills/tools/jules
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/jules/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: qwen
-  name: qwen
-  description: '> Qwen CLI integration for Alibaba''s Qwen AI models.'
-  category: tools
-  tags:
-  - qwen
-  path: skills/tools/qwen
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/qwen/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: sales-pro
-  name: sales-pro
-  description: SWAL Sales Assistant - Research prospects, generate RFIs, quotes, and
-    requirements for SouthWest AI Labs software products.
-  category: tools
-  tags:
-  - sales-pro
-  path: skills/tools/sales-pro
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/sales-pro/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: skill-launcher
-  name: skill-launcher
-  description: Automatically inject skill context into subagent spawning. Use this
-    skill when launching any subagent to ensure they have the right skills loaded
-    for their task. This skill provides the launching protocol and skill context injection.
-  category: tools
-  tags:
-  - skill-launcher
-  path: skills/tools/skill-launcher
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/skill-launcher/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: skill-provider
-  name: skill-provider
-  description: Dynamic skill loader for all coding agents. Access any skill on-demand.
-  category: tools
-  tags:
-  - skill-provider
-  path: skills/tools/skill-provider
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/skill-provider/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: sqlite-pro
-  name: sqlite-pro
-  description: Advanced SQLite patterns for AI agent memory, vector search, and edge
-    AI storage. Built for SQLite 3.53.0+.
-  category: tools
-  tags:
-  - sqlite-pro
-  path: skills/tools/sqlite-pro
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/sqlite-pro/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: src-generator
-  name: src-generator
-  description: '**src-generator** - Generador de Documentos de Requisitos de Software
-    (SRC)'
-  category: tools
-  tags:
-  - src-generator
-  path: skills/tools/src-generator
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/src-generator/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: studio-coach
-  name: studio-coach
-  description: You are the studio's elite performance coach and chief motivation officer—a
-    unique blend of championship sports coach, startup mentor, and zen master. You've
-    coached the best agents in the business to achieve the impossible, and you understand
-    that peak performance comes from the perfect balance of intensity and calm, speed
-    and precision, confidence and humility. Your presence alone elevates everyone
-    around you.
-  category: tools
-  tags:
-  - studio-coach
-  path: skills/tools/studio-coach
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/studio-coach/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: web-research
-  name: web-research
-  description: Use for all web research tasks - market research, competitor analysis,
-    deep research on topics, finding information about leads/prospects, technology
-    trends, and any inquiry requiring current web information.
-  category: tools
-  tags:
-  - web-research
-  path: skills/tools/web-research
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/web-research/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: xavier2-context
-  name: xavier2-context
-  description: Xavier2 as the central context engine for SWAL - intelligent memory,
-    decision-making, and context orchestration.
-  category: tools
-  tags:
-  - xavier2
-  - context-engine
-  - memory
-  - cortex
-  - orchestration
-  path: skills/tools/xavier2-context
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/xavier2-context/SKILL.md
-  authors:
-  - Brahyan Belalcazar
-- id: web-design-guidelines
-  name: web-design-guidelines
-  description: Review UI code for compliance with web interface best practices. Audits
-    your code for 100+ rules covering accessibility, performance, and UX.
-  category: web
-  tags:
-  - web-design
-  - accessibility
-  - performance
-  - ux
-  - audit
-  path: skills/web/web-design-guidelines
-  raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/web/web-design-guidelines/SKILL.md
-  authors:
-  - Brahyan Belalcazar
+  - id: agent-issue-delegation
+    category: autonomous-ai-agents
+    description: "Crear GitHub Issues de calidad profesional para delegar a agentes autónomos (Jules, Claude Code, Codex, OpenCode). Template con Current State medible, Anti-Hallucination Guard, Acceptance Criteria ver"
+  - id: jules-recovery-protocol
+    category: autonomous-ai-agents
+    description: "Protocolo de recuperación para Jules cuando falla una sesión. Incluye prompt optimizado en 3 fases: Diagnóstico → Investigación Enfocada → Implementación+PR. Versión validada con Ola 8 Xavier."
+  - id: caveman
+    category: communication
+    description: ">"
+  - id: bug-triage
+    category: debugging
+    description: "Use when diagnosing a bug in code. Five steps: understand the symptom, form hypotheses, test each with the smallest experiment, isolate the root cause, then fix with a regression test. For issue-track"
+  - id: issue-triage
+    category: debugging
+    description: "Use when moving issues or external PRs through the issue tracker's triage state machine (needs-triage, ready-for-agent, wontfix). Categorises, verifies, grills, and writes agent briefs. For diagnosing"
+  - id: brand-guardian
+    category: design
+    description: ""
+  - id: claude-design-principles
+    category: design
+    description: "Principios de diseño UI/UX distillados del system prompt de Claude Design. Recopila contexto antes de diseñar, ofrece 3+ variantes, evita AI slop. Incluye sistemas de color, tipografía, espaciado y he"
+  - id: swal-theme-creator
+    category: design
+    description: "Allows AI agents (Hermes, Antigravity, Jules) to generate, validate, and switch visual themes in SWAL Desktop using declarative JSON tokens."
+  - id: ui-designer
+    category: design
+    description: ""
+  - id: ux-researcher
+    category: design
+    description: ""
+  - id: visual-storyteller
+    category: design
+    description: ""
+  - id: whimsy-injector
+    category: design
+    description: ""
+  - id: background-transfer-monitor
+    category: devops
+    description: "Use when running long background uploads: track progress."
+  - id: cron-fleet-maintenance
+    category: devops
+    description: "Use when auditing or repairing a fleet of cron jobs."
+  - id: hermes-gateway-troubleshooting
+    category: devops
+    description: "Debug Hermes Gateway connectivity and platform integration issues — Telegram, Discord, WhatsApp. Covers Python env corruption, systemd service config, plugin adapter changes, and credential/auth failu"
+  - id: kanban-orchestrator
+    category: devops
+    description: "Decomposition playbook + anti-temptation rules for an orchestrator profile routing work through Kanban. The 'don't do the work yourself' rule and the basic lifecycle are auto-injected into every kanba"
+  - id: kanban-worker
+    category: devops
+    description: "Pitfalls, examples, and edge cases for Hermes Kanban workers. The lifecycle itself is auto-injected into every worker's system prompt as KANBAN_GUIDANCE (from agent/prompt_builder.py); this skill is w"
+  - id: linux-performance-profiles
+    category: devops
+    description: "Switchable Linux system performance profiles (gaming, sen/headless work, default) via sysfs/sysctl/Hyprland. Generic across distros and hardware."
+  - id: rclone-cloud-backup
+    category: devops
+    description: "Use when auditing a running rclone cloud sync job."
+  - id: rclone-drive-backup
+    category: devops
+    description: "Use when uploading local trees to Google Drive."
+  - id: subagent-output-truncation
+    category: devops
+    description: "Fix subagents that hit max output tokens and ship nothing."
+  - id: swal-grep-alias-rg
+    category: devops
+    description: "Use when a bash/zsh verification pipeline silently fails to filter output in SWAL desktop."
+  - id: swal-network-launch
+    category: devops
+    description: "Guía maestra para coordinar y priorizar el desarrollo y auditoría del ecosistema SWAL para el lanzamiento de la red (v1.0), basado en Readiness Scan v1.0 y GitCore 3.8.0."
+  - id: ai-engineer
+    category: engineering-workflow
+    description: "Practical ML/LLM integration into production apps (model choice, RAG, streaming, cost/latency). Use when adding or improving an AI feature."
+  - id: backend-architect
+    category: engineering-workflow
+    description: "Backend architecture role: API and DB design, minimal change sets, instrumentation and validation. Use for server-side design or refactor tasks."
+  - id: devops-automator
+    category: engineering-workflow
+    description: "Use when designing or changing CI/CD pipelines, deployment gates/rollback, infrastructure-as-code, or observability/alerting."
+  - id: frontend-developer
+    category: engineering-workflow
+    description: "Frontend implementation role: accessible, performant UI changes validated with build and tests. Use for frontend feature or refactor work."
+  - id: gestalt-orchestration
+    category: engineering-workflow
+    description: "Protocolo de orquestación multi-agente: Hermes orquesta, Gestalt ejecuta, Xavier persiste, GitCore gatilla"
+  - id: gitcore-swal-workflow
+    category: engineering-workflow
+    description: "SWAL workflow from idea to verified wave: organic routing (direct inline / delegated direct / optional SDD), local GitCore issues, SRS mapping. Thin router over gitcore."
+  - id: mobile-app-builder
+    category: engineering-workflow
+    description: "Use when building or optimizing an iOS, Android or cross-platform mobile app (performance, memory, battery, native UX)."
+  - id: rapid-prototyper
+    category: engineering-workflow
+    description: "Rapid MVP prototyping role: scaffold, core flows, demo polish, refactor notes. Use when turning an idea into a runnable demo fast."
+  - id: test-writer-fixer
+    category: engineering-workflow
+    description: "Write and repair tests: map changes to tests, run focused suites, fix failures without weakening assertions. Use after code changes or when tests fail."
+  - id: astro
+    category: framework
+    description: "Use when creating or deploying an Astro static site or blog, setting up multilingual (i18n) content, or hosting it on Cloudflare Pages."
+  - id: tailwindcss
+    category: framework
+    description: "Tailwind CSS utility, variant and config pitfalls (v3 config model; v4 uses CSS-first config). Use when writing or debugging Tailwind classes or config."
+  - id: frontend-agent
+    category: frontend
+    description: ""
+  - id: frontend-doctor
+    category: frontend
+    description: "Use when a web frontend shows a white screen, runtime JS errors, failed asset loads (404/CORS/CSP), SSR hydration mismatches, a blank browser-extension popup, or broken CSS layout."
+  - id: agentic-e2e
+    category: general
+    description: "Agentic end-to-end testing with tester-army/e2e (npm `e2e`): natural-language agent steps with exact assertions, a replay cache that reruns verified steps without model calls, `e2e explore` and bug ba"
+  - id: agy-customizations
+    category: general
+    description: "Customizar Antigravity/agy: donde viven skills, rules, agentes y hooks, formato .skill-lock.json y como agregar personalizaciones sin romper updates."
+  - id: antigravity_guide
+    category: general
+    description: "Reference for using agy CLI (Antigravity) as a headless subagent: correct invocation, effort-tier selection, timeouts, status visibility, NixOS gotchas, and opencode CLI as an alternate backend."
+  - id: bateria-de-testing
+    category: general
+    description: "Bateria de testing completa para apps local-first (Astro/Svelte): unit, plantillas, E2E (offline, tema y movil), barrido visual, QA exploratoria y cierre. Router sobre vitest, Playwright y tester-army"
+  - id: camera-photo-backup
+    category: general
+    description: "Respaldo seguro de fotos/videos desde tarjeta SD de camara: montaje, copia verificada con checksums y liberacion de la tarjeta. Nunca borra sin verificar."
+  - id: cargo-wizard
+    category: general
+    description: "Use when validating Rust code. Runs check test clippy fmt."
+  - id: cloudflare-one
+    category: general
+    description: "Guides Cloudflare One Zero Trust and SASE work across Access, Gateway, WARP, Tunnel, Cloudflare WAN, DLP, CASB, device posture, and identity. Use when designing, configuring, troubleshooting, or revie"
+  - id: cloudflare-one-migrations
+    category: general
+    description: "Plans migrations from Zscaler ZIA/ZPA, Palo Alto, legacy VPN, SWG, or SASE stacks to Cloudflare One. Use for migration assessments, policy mapping, rollout plans, and parity/gap analysis."
+  - id: codificacion-ciclos
+    category: general
+    description: "Flujo SWAL por ciclos — leer features.json, implementar, verificar con 3 fuentes y actualizar el ledger. Usar al ejecutar o cerrar un ciclo de desarrollo."
+  - id: cole-medin-workflow
+    category: general
+    description: ">"
+  - id: community-hexagonal
+    category: general
+    description: ">"
+  - id: cron-automation-manager
+    category: general
+    description: "Manage and create scheduled cron jobs, automated monitoring tasks, reminders, and periodic push notifications. Use when the user asks to create or manage any scheduled task, monitoring workflow, or au"
+  - id: design-md-creator
+    category: general
+    description: "Create DESIGN.md design system files from websites or existing UIs. Use when starting a new frontend project, documenting an existing design, or creating design references for AI agents. Based on Goog"
+  - id: desktop-computer-use
+    category: general
+    description: "Drive native desktop apps background-first; escalate only on the driver's signal."
+  - id: discord-admin
+    category: general
+    description: "Complete A-Z Discord server administration. Channel/role/member management, AutoMod, webhooks, templates, audit logs, scheduled events, threads, and full server control via CLI."
+  - id: doc-generator
+    category: general
+    description: "Creates professional documentation for SWAL projects using real code analysis. Use when projects have low doc score or missing ARCHITECTURE.md/STATE.md."
+  - id: dom-pipeline
+    category: general
+    description: "DOM extraction and AI processing pipeline for browser automation. Use when building DOM-based AI tools, web automation, or text-based page understanding systems."
+  - id: ffmpeg
+    category: general
+    description: "Edición de video real con FFmpeg local (cortar, unir, vertical 9:16, captions, loudness, exports por plataforma). Úsalo siempre que haya footage real (mp4/mov/mkv); HyperFrames es solo para composicio"
+  - id: find-skills
+    category: general
+    description: "Helps users discover and install agent skills when they ask questions like 'how do I do X', 'find a skill for X', 'is there a skill that can...', or express interest in extending capabilities. This sk"
+  - id: flutter-gemma
+    category: general
+    description: "On-device AI integration for OrionHealth using Flutter and Gemma 4 via AICore + ML Kit. Integrates Gemma 4 100% local on Android."
+  - id: garage3d-game-hud
+    category: general
+    description: "Build or change the GARA-G garage HUD — the game-style Svelte 5 UI around the 3D vehicle (side indicators, fleet selector arrows, commitments notifier, monitoring strip, bottom dock with parts/history"
+  - id: garage3d-parametric-vehicles
+    category: general
+    description: "Build or change GARA-G parametric vehicle templates (motos, cars, heavy) — generic, trademark-free 3D vehicles generated by code from spec-sheet measurements, with every serviceable part as its own pi"
+  - id: garage3d-webgpu-engine
+    category: general
+    description: "Build or change the GARA-G 3D garage engine (three.js r186 WebGPURenderer + TSL, WebGL2 fallback) at a steady 60 fps on mid-range phones. Use when touching packages/app-pwa/src/garage/engine/, the gar"
+  - id: gemini-capable
+    category: general
+    description: "Use when calling Google AI Studio (Gemini) directly - auth, endpoint, thinking, vision, code execution. For which model to use, see llm-routing."
+  - id: gemini-deep-research
+    category: general
+    description: "Advanced deep research agent using Gemini 3.1 Pro with customtools endpoint for optimal agent performance. Deep research, thinking mode, and project management for 50+ SWAL projects. Updated 2026-04-2"
+  - id: gemini-key-pool
+    category: general
+    description: "SWAL Gemini Key Pool Manager - Multiple Google AI API keys with automatic rotation and load balancing. Updated 2026-04-21."
+  - id: gemini-skill
+    category: general
+    description: "通过 Gemini 官网（gemini.google.com）执行问答与生图操作。用户提到'问问Gemini/让Gemini回答/去Gemini问'，或出现'生图/画图/绘图/nano banana/nanobanana/生成图片'等关键词时触发。默认使用可用模型中最强档（优先 Gemini 3.1 Pro），按任务切换文本问答或图片生成流程，并把结果回传给用户。"
+  - id: gemini-web-search
+    category: general
+    description: "Use Gemini CLI (@google/gemini-cli) to do web search / fact-finding and return a sourced summary. Use when the user asks 'why did X happen today', 'what's the latest news', 'search the web', 'find sou"
+  - id: gentleman-branch-pr
+    category: general
+    description: ">"
+  - id: gentleman-github-pr
+    category: general
+    description: ">"
+  - id: gentleman-issue-creation
+    category: general
+    description: ">"
+  - id: gentleman-skill-creator
+    category: general
+    description: ">"
+  - id: gentleman-typescript
+    category: general
+    description: ">"
+  - id: harness-audit
+    category: general
+    description: "Auditar el arnes Hermes (cron jobs, skills activos vs uso real, presupuesto de memoria, reglas) con clasificacion rojo/amarillo/verde y plan de accion. Usar antes de cambios al harness."
+  - id: hyperframes
+    category: general
+    description: ">"
+  - id: hyperframes-audio
+    category: general
+    description: ">"
+  - id: hyperframes-keyframes
+    category: general
+    description: ">"
+  - id: hyperframes-registry
+    category: general
+    description: "Install, discover, and wire registry blocks and components into HyperFrames compositions. Use when running hyperframes add or hyperframes catalog, installing one item or every block matching a tag, wi"
+  - id: industrial-rust-techniques
+    category: general
+    description: ">-"
+  - id: infographics-visualizer
+    category: general
+    description: "Create modern, production-grade interactive infographics, animated SVG diagrams, architectural flows, and data radars using pure SVG, GSAP, CSS Keyframes, and Tailwind."
+  - id: informe-tui
+    category: general
+    description: "Use when el usuario pida el informe TUI de 4 areas o el prompt viejo. Bloques fijos, sin relleno."
+  - id: llm-agent-comparison
+    category: general
+    description: "Research comparing LLM coding agents - OpenCode, Gemini CLI, and others. Tests approaches for SWAL agent system."
+  - id: llm-orchestration
+    category: general
+    description: "SWAL Unified LLM Orchestration - Combines resource monitoring, multi-key Gemini management, and OpenRouter routing. Intelligent provider selection for code, fast, deep, and reasoning tasks. Version 1."
+  - id: monorepo-build-diagnostics
+    category: general
+    description: "Diagnose build failures in pnpm/Svelte/Vite monorepos — stash-comparison to isolate pre-existing breakage from your changes, workspace dependency resolution pitfalls, untracked-file missing deps."
+  - id: nixos-system-management
+    category: general
+    description: "Reglas operativas NixOS SWAL (flakes+git, overlays prohibidos, puertos, offline Rust, nix profile) + router a nixos-desktop y swal-desktop-management."
+  - id: omo
+    category: general
+    description: "Omo CLI - AI agent for software development. Alternative CLI agent for code generation and multilingual tasks."
+  - id: opencode-dev-workflow
+    category: general
+    description: ">"
+  - id: orca-cli
+    category: general
+    description: ">-"
+  - id: orchestration
+    category: general
+    description: "Use Orca orchestration for structured multi-agent coordination: Orca worktrees/terminals/handoffs, routing to Gestalt or Qwen dispatches. Router delgado."
+  - id: page-agent-dev
+    category: general
+    description: "Development workflow for Alibaba's page-agent monorepo. Use when working with page-agent packages, building browser AI agents, or extending the page-agent architecture."
+  - id: public-repo-maintainer
+    category: general
+    description: "Maintain a busy public repo (t3code-style). Triggers: public repo maintenance, contributor PR triage, branch/worktree policy, release nightly/stable, dependabot batching, CI gates, security disclosure"
+  - id: refactor-equivalence-verification
+    category: general
+    description: "Use when refactoring a script, gate or pipeline. Prove the output is unchanged, and run the thing after editing it."
+  - id: review
+    category: general
+    description: "Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes — Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match wha"
+  - id: sandbox-migrate-to-next
+    category: general
+    description: "Use when porting a Cloudflare Sandbox app from stable @cloudflare/sandbox to @cloudflare/sandbox@next (Sandbox SDK 1.0 preview), or when the user asks to migrate or upgrade to Sandbox 1.0 / @next. Not"
+  - id: sandbox-next
+    category: general
+    description: "Use when building or changing Cloudflare Sandbox apps on @cloudflare/sandbox@next (Sandbox SDK 1.0 preview)—code execution, AI runners, interpreters, CI-like jobs, terminals, files, mounts, tunnels, p"
+  - id: sandbox-stable
+    category: general
+    description: "Use when building or changing Cloudflare Sandbox apps on the current stable @cloudflare/sandbox package (default npm tag)—commands, sessions, files, ports, tunnels, terminals, bridge, production, or d"
+  - id: sdd-hibrido
+    category: general
+    description: "Use when routing a task before creating SDD artifacts."
+  - id: skill-orchestrator
+    category: general
+    description: "Pipeline de orquestación multi-agente del ecosistema SWAL. Usar ANTES de cualquier delegación o sessions_spawn. Define los roles (orquestador/ejecutores), el reparto de trabajo, los modos de ejecución"
+  - id: subagent-delegation-muse-spark
+    category: general
+    description: "Use when delegating work to subagents/delegations in OpenClaw to save the main API. Routes delegation to muse-spark-1.3-contributor with closed context, anti-exploration bias, and acceptance criteria "
+  - id: swal-t3-pr-babysitter
+    category: general
+    description: "Protocolo de monitoreo y babysitting reactivo de Pull Requests para agentes en T3 Code y CLI. Basado en el motor de Theo Browne (10% de reserva GraphQL, 0 bucles de polling, inspeccion por fingerprint"
+  - id: swal-tag-protocol
+    category: general
+    description: "Protocolo de tags de release SWAL: formato vX.Y.Z, condiciones para taguear (CI verde + QA + CHANGELOG + ADR), single-source de manifests y verificacion."
+  - id: threejs-aaa-graphics-builder
+    category: general
+    description: "Upgrade Three.js games from prototype visuals to premium browser graphics: art-direction critique, procedural model building, material and texture libraries, world prop kits, shaders, VFX, lighting an"
+  - id: threejs-debug-profiler
+    category: general
+    description: "Debug and profile Three.js browser games: blank canvases, render and runtime bugs, asset and audio loading, animation, resize, mobile input, plus performance profiling of draw calls, triangles, textur"
+  - id: threejs-game-ui-designer
+    category: general
+    description: "Design premium Three.js game UI: HUDs, menus, overlays, pause/win/lose screens, settings, icon controls, touch UI, typography, responsive layout, safe areas, text fit, and UI/world cohesion."
+  - id: threejs-procedural-architecture
+    category: general
+    description: "Build authored procedural buildings and architectural kits in Three.js. Use for massing grammars, exposed-edge analysis, façade bays, profiles, arches, cornices, roofs, ornaments, material-slot mesh c"
+  - id: threejs-shadow-systems
+    category: general
+    description: "Implement stable, scalable directional-shadow systems for Three.js. Use for large procedural worlds, city scenes, terrain, moving cameras, WebGPU/TSL shadow nodes, cascades, cached clipmaps, texel sta"
+  - id: threejs-visual-validation
+    category: general
+    description: "Validate advanced Three.js graphics as authored systems rather than subjective screenshots. Use for fixed-view visual contracts, field and pass diagnostics, no-post baselines, seed sweeps, camera-scal"
+  - id: web-perf
+    category: general
+    description: "Analyzes web performance using Chrome DevTools MCP. Measures Core Web Vitals (LCP, INP, CLS) and supplementary metrics (FCP, TBT, Speed Index), identifies render-blocking resources, network dependency"
+  - id: weight-loss-coach
+    category: general
+    description: ">"
+  - id: worldexams-pipeline
+    category: general
+    description: "Use when generating, repairing or auditing WorldExams bundles. Real commands, real gates, and what a green result does not prove."
+  - id: worldexams-quality-gate
+    category: general
+    description: "Use when validating or repairing generated WorldExams/SaberParaTodos bundle markdown before opening a PR. CJK/English leakage, evidenced ICFES axes, answer-letter rebalance, dual validators."
+  - id: worldexams-question-reviewer
+    category: general
+    description: "Review and validate WorldExams question bundles. Detects errors, scores quality, and applies regeneration policy. Report-only; never edits or commits bundles or generator prompts."
+  - id: xiucheng-self-improving-agent
+    category: general
+    description: "Self-improving agent system that analyzes conversation quality, identifies improvement opportunities, and continuously optimizes response strategies."
+  - id: agent-pr-verification
+    category: github
+    description: "Use when merging agent PRs: verify in isolation first."
+  - id: codebase-inspection
+    category: github
+    description: "Deep-dive codebase analysis: LOC, structure, CI/CD, docs infrastructure, code symbol indexing, GitHub Pages readiness, and improvement planning."
+  - id: jev-browser-use
+    category: jev
+    description: "Use when driving a web page in a browser — clicking, typing, navigating, logged-in or JS-rendered pages. Jev picks each step from the elements observed, under a host allowlist and a step budget."
+  - id: jev-compaction
+    category: jev
+    description: "Use when a transcript has to be cut to a fixed size and you must choose which turns go. Jev marks each turn keep, summarize or drop. Measured: it does not make a handoff better."
+  - id: jev-computer-use
+    category: jev
+    description: "Use when driving a desktop GUI through a computer-use driver — windows, menus, native apps, OS dialogs. You build a table of safe actions; Jev picks the next one in about 0.4 seconds."
+  - id: jev-frontier-work
+    category: jev
+    description: "Use when a task is already judged hard — pick which paid frontier seat takes it, then keep Jev watching the delegated run so it interrupts you only when the run needs a decision."
+  - id: jev-mailbox
+    category: jev
+    description: "Use on a mailbox export to sort mail into needs reply, updates, promotional, sales and spam — which messages are addressed to the person at all. For a support queue use jev triage."
+  - id: jev-memory
+    category: jev
+    description: "Use on passages a search just returned (memory, vault, session history, wiki, web) before reading them in. Jev ranks them, drops the irrelevant, and flags prompt injection hidden in the text."
+  - id: jev-model-routing
+    category: jev
+    description: "Use to pick the cheapest model that is good enough for a turn — choosing a model, delegating a sub-task to a sub-agent, cutting model spend, or setting up and tuning Jev routing pools."
+  - id: jev-skill-select
+    category: jev
+    description: "Use when unsure which of many installed skills applies to a request, if any, or when asked to make skill loading cheaper or more accurate. Jev ranks the whole catalog and may say no skill is needed."
+  - id: python
+    category: language
+    description: ""
+  - id: rust
+    category: language
+    description: ""
+  - id: app-store-optimizer
+    category: marketing
+    description: ""
+  - id: content-creator
+    category: marketing
+    description: ""
+  - id: instagram-curator
+    category: marketing
+    description: ""
+  - id: reddit-community-builder
+    category: marketing
+    description: ""
+  - id: tiktok-strategist
+    category: marketing
+    description: ""
+  - id: twitter-engager
+    category: marketing
+    description: ""
+  - id: claude-handoff
+    category: mattpocock
+    description: "Hand the current conversation off to a fresh background agent that picks up the work immediately."
+  - id: code-review
+    category: mattpocock
+    description: "Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes: Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what"
+  - id: codebase-design
+    category: mattpocock
+    description: "Shared vocabulary for designing deep modules. Use when the user wants to design or improve a module's interface, find deepening opportunities, decide where a seam goes, make code more testable or AI-n"
+  - id: domain-modeling
+    category: mattpocock
+    description: "Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a GLOSSARY.md, or recording or editing an ADR."
+  - id: git-guardrails-claude-code
+    category: mattpocock
+    description: "Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute. Use when user wants to prevent destructive git operations, add git safety hoo"
+  - id: grill-me
+    category: mattpocock
+    description: "A relentless interview to sharpen a plan or design."
+  - id: grill-with-docs
+    category: mattpocock
+    description: "A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go."
+  - id: grilling
+    category: mattpocock
+    description: "Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases."
+  - id: handoff
+    category: mattpocock
+    description: "Compact the current conversation into a handoff document for another agent to pick up."
+  - id: implement
+    category: mattpocock
+    description: "Implement a piece of work based on a spec or set of tickets."
+  - id: implement-spec
+    category: mattpocock
+    description: "Implement the result of /to-spec and /to-tickets in code."
+  - id: improve-codebase-architecture
+    category: mattpocock
+    description: "Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick."
+  - id: loop-me
+    category: mattpocock
+    description: "Grill me about specs for the workflows I want to build, within this workspace."
+  - id: migrate-to-shoehorn
+    category: mattpocock
+    description: "Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use when user mentions shoehorn, wants to replace `as` in tests, or needs partial test data."
+  - id: pr
+    category: mattpocock
+    description: "Use when writing a PR body."
+  - id: research
+    category: mattpocock
+    description: "Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading le"
+  - id: retro
+    category: mattpocock
+    description: "Conduct a retrospective on a coding session."
+  - id: scaffold-exercises
+    category: mattpocock
+    description: "Create exercise directory structures with sections, problems, solutions, and explainers that pass linting. Use when user wants to scaffold exercises, create exercise stubs, or set up a new course sect"
+  - id: setup-matt-pocock-skills
+    category: mattpocock
+    description: "Configure this repo for the engineering skills: set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills."
+  - id: setup-pre-commit
+    category: mattpocock
+    description: "Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and tests in the current repo. Use when user wants to add pre-commit hooks, set up Husky, configure lint-staged, or add commit"
+  - id: setup-ts-deep-modules
+    category: mattpocock
+    description: "Wire dependency-cruiser into a TypeScript repo so each package is a deep module, with implementation hidden in subfolders and reachable only through its entry-point files. User-invoked."
+  - id: teach
+    category: mattpocock
+    description: "Teach the user a new skill or concept, within this workspace."
+  - id: to-questionnaire
+    category: mattpocock
+    description: "Turn a decision you can't fully answer into a questionnaire for someone else to fill in."
+  - id: to-spec
+    category: mattpocock
+    description: "Turn the current conversation into a spec and publish it to the project issue tracker: no interview, just synthesis of what you've already discussed."
+  - id: to-tickets
+    category: mattpocock
+    description: "Break a plan, spec, or the current conversation into a set of tracer-bullet tickets, each declaring its blocking edges, published to the configured tracker (edges as text in one file per ticket locall"
+  - id: wait-what
+    category: mattpocock
+    description: "Stop. That last message did not land: re-pitch it."
+  - id: wayfinder
+    category: mattpocock
+    description: "Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on your issue tracker, and resolve them one at a time until the way to the destination is clear."
+  - id: writing-beats
+    category: mattpocock
+    description: "Writing, exploit; assemble raw material into a journey of beats, grounding each term before a beat leans on it."
+  - id: writing-for-agents
+    category: mattpocock
+    description: "Writing documents for agents. Use when creating or editing skills, or modifying AGENTS.md or CLAUDE.md."
+  - id: writing-fragments
+    category: mattpocock
+    description: "Writing, explore: mine raw fragments, no structure yet."
+  - id: writing-shape
+    category: mattpocock
+    description: "Writing, exploit: shape raw material into an article, paragraph by paragraph."
+  - id: infrastructure-maintainer
+    category: operations
+    description: ""
+  - id: legal-compliance-checker
+    category: operations
+    description: ""
+  - id: support-responder
+    category: operations
+    description: ""
+  - id: feedback-synthesizer
+    category: product
+    description: ""
+  - id: trend-researcher
+    category: product
+    description: ""
+  - id: session-librarian
+    category: productivity
+    description: "Organize sessions by prompt: find, rename, archive, prune."
+  - id: skill-invocation-audit
+    category: productivity
+    description: "Use when a skill names another skill, chains skills, or when a chained skill silently fails to load. Enforces explicit tool-call phrasing, two-calls-for-two-skills, and the user-invoked-is-unreachable"
+  - id: skill-router
+    category: productivity
+    description: "Use when dispatching a subagent, choosing which skill to load, or deciding whether a task needs a skill at all. Maps task types to the exact skill name plus whether the model can auto-load it or the h"
+  - id: experiment-tracker
+    category: project-management
+    description: ""
+  - id: studio-producer
+    category: project-management
+    description: ""
+  - id: grounded-citations
+    category: research
+    description: "Ground answers and documents in cited, verifiable sources."
+  - id: rss-feeds
+    category: research
+    description: "Read RSS, Atom, JSON feeds; discover feeds behind a page."
+  - id: rust-compile-optimization
+    category: rust-development
+    description: "Use when Rust builds are slow. Applies fast compile fixes."
+  - id: rust-workspace-patterns
+    category: rust-development
+    description: "Use when structuring Rust workspaces. Layouts and splits."
+  - id: debugging-hermes-tui-commands
+    category: software-development
+    description: "Debug Hermes TUI: slash commands, rendering/layout, Python gateway, Ink UI."
+  - id: delivery-verification-gate
+    category: software-development
+    description: "Use when claiming something works: run the full gate."
+  - id: eww-interface-design-with-grok
+    category: software-development
+    description: "Redisenar interfaces EWW usando OpenCode CLI con  (diseno) + deepseek-v4-flash-0731 (implementacion). Flujo: captura de pantalla → investigacion web →  critica → deepseek-v4-flash-0731 escribe archivo"
+  - id: flutter-glass-ui
+    category: software-development
+    description: "Use when building glassmorphism UIs in Flutter apps."
+  - id: graph-view-styling
+    category: software-development
+    description: "Use when restyling graph or knowledge-map views (sigma.js)."
+  - id: linux-desktop-app-packaging
+    category: software-development
+    description: ">"
+  - id: plan
+    category: software-development
+    description: "Write a markdown plan to .hermes/plans/; no execution."
+  - id: requesting-code-review
+    category: software-development
+    description: "Pre-commit review: security scan, quality gates, auto-fix."
+  - id: rust-code-audit
+    category: software-development
+    description: "Use when auditing Rust code. Finds security and perf bugs."
+  - id: screenshot-debug
+    category: software-development
+    description: "Debug errores visibles en pantalla tomando un screenshot completo y analizándolo con un modelo de visión (Qwen3.6-Plus via OpenCode Go)."
+  - id: swal-eww-dashboard
+    category: software-development
+    description: "SWAL Dashboard EWW — panel flotante derecho con tarjetas de sistema, rings circulares, clima, calendario, media player, toggles y acciones"
+  - id: web-visual-verification
+    category: software-development
+    description: "Use when shipping web UI: screenshot and review first."
+  - id: subagent-skill-injection
+    category: swal-engineering
+    description: "Inyectar skills del catálogo iberi22/skills a subagentes Hermes (delegate_task). Catálogo de los 17 skills instalados y protocolo de inyección inline."
+  - id: api-tester
+    category: testing
+    description: "API performance, load, contract and chaos testing (k6, Pact, Dredd). Use when testing or benchmarking an HTTP API."
+  - id: performance-benchmarker
+    category: testing
+    description: "Performance testing and optimization: Core Web Vitals (LCP, INP, CLS), load and profiling, budgets and reports. Use when measuring or improving app speed."
+  - id: test-results-analyzer
+    category: testing
+    description: "Analyze test run results: failure patterns, flaky tests, coverage gaps, trend reports. Use when interpreting CI/test logs or producing a quality report."
+  - id: tool-evaluator
+    category: testing
+    description: ""
+  - id: workflow-optimizer
+    category: testing
+    description: ""
+  - id: codex
+    category: tools
+    description: "Delegate coding to OpenAI Codex CLI (features, PRs)."
+  - id: coding-agent
+    category: tools
+    description: ""
+  - id: gemini
+    category: tools
+    description: ""
+  - id: joker
+    category: tools
+    description: ""
+  - id: jules
+    category: tools
+    description: "Use when delegating a coding task to Google Jules (async cloud coding agent, via REST API v1alpha or the jules CLI), or when monitoring, rescuing, or merging the pull requests it opens."
+  - id: qwen
+    category: tools
+    description: ""
+  - id: sqlite-pro
+    category: tools
+    description: ""
+  - id: src-generator
+    category: tools
+    description: ""
+  - id: studio-coach
+    category: tools
+    description: ""
+  - id: blocked-page-recovery
+    category: web
+    description: "Use when a fetch fails: 403/429, paywall, WAF, bot wall. Recovers the page via archives and provenance-checked fallbacks."
+  - id: web-design-guidelines
+    category: web
+    description: ""
