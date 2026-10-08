@@ -15,10 +15,12 @@ included in this repo.
 | `devops/hermes-gateway-troubleshooting` | - | Hermes Agent | - |
 | `devops/swal-network-launch` | - | - | - |
 | `engineering-workflow/gitcore-swal-workflow` | - | Hermes Agent | - |
+| `engineering-workflow/prototype` | MIT | - | https://github.com/mattpocock/skills |
 | `general/agentic-e2e` | - | - | - |
 | `general/agy-customizations` | - | Hermes Agent (RECONSTRUCTED 2026-09-07 tras incidente skills 2026-09-0 | - |
 | `general/antigravity_guide` | - | Claude (validated live 2026-09-26 against `agy --help`/`agy changelog` | - |
 | `general/bateria-de-testing` | - | Hermes Agent (RECONSTRUCTED 2026-09-07 tras incidente skills 2026-09-0 | - |
+| `general/browser-automation` | MIT | - | - |
 | `general/camera-photo-backup` | - | Hermes Agent (RECONSTRUCTED 2026-09-07 tras incidente skills 2026-09-0 | - |
 | `general/cargo-wizard` | MIT | Hermes Agent | https://github.com/rust-clippy/rust-clippy |
 | `general/cole-medin-workflow` | MIT | - | https://github.com/karpathy/autoresearch |
@@ -37,6 +39,7 @@ included in this repo.
 | `general/gentleman-branch-pr` | Apache-2.0 | - | https://github.com/Gentleman-Programming/gentle-ai |
 | `general/gentleman-github-pr` | MIT | gentleman-programming | - |
 | `general/gentleman-issue-creation` | Apache-2.0 | - | https://github.com/Gentleman-Programming/gentle-ai |
+| `general/gentleman-playwright` | Apache-2.0 | - | - |
 | `general/gentleman-skill-creator` | Apache-2.0 | - | - |
 | `general/gentleman-typescript` | Apache-2.0 | - | - |
 | `general/harness-audit` | - | Hermes Agent (RECONSTRUCTED 2026-09-07 tras incidente skills 2026-09-0 | - |
@@ -50,6 +53,7 @@ included in this repo.
 | `general/opencode-dev-workflow` | Apache-2.0 | - | - |
 | `general/orchestration` | - | Hermes Agent (RECONSTRUCTED 2026-09-07 tras incidente skills 2026-09-0 | - |
 | `general/page-agent-dev` | MIT | swal | - |
+| `general/pr-review` | MIT | - | - |
 | `general/sdd-hibrido` | - | BELA | - |
 | `general/skill-orchestrator` | MIT | swal | - |
 | `general/subagent-delegation-muse-spark` | - | Claw | - |
@@ -57,6 +61,7 @@ included in this repo.
 | `general/weight-loss-coach` | Apache-2.0 | - | - |
 | `general/xiucheng-self-improving-agent` | MIT | xiucheng | https://github.com/xiucheng/self-improving-agent |
 | `github/codebase-inspection` | MIT | Hermes Agent | - |
+| `github/github-repo-management` | MIT | Hermes Agent | https://github.com/o/r.git, https://github.com/owner/repo-name.git |
 | `jev/jev-browser-use` | MIT | - | https://github.com/browser-use/jev-ultrafast |
 | `jev/jev-compaction` | MIT | - | https://github.com/NousResearch/hermes-agent |
 | `jev/jev-computer-use` | MIT | - | https://github.com/savka777/jev-use |
@@ -64,6 +69,7 @@ included in this repo.
 | `jev/jev-mailbox` | MIT | - | - |
 | `jev/jev-memory` | MIT | - | - |
 | `jev/jev-model-routing` | MIT | - | - |
+| `jev/jev-setup` | MIT | - | - |
 | `jev/jev-skill-select` | MIT | - | - |
 | `marketing/instagram-curator` | - | - | - |
 | `mattpocock/git-guardrails-claude-code` | - | - | - |
@@ -77,10 +83,12 @@ included in this repo.
 | `research/rss-feeds` | MIT | Teknium (teknium1), Hermes Agent | https://github.com/NousResearch/hermes-agent, https://github.com/OWNER/REPO |
 | `rust-development/rust-compile-optimization` | MIT | Hermes Agent for belal | https://github.com/bnjbvr/cargo-machete, https://github.com/gankra/cargo-hakari |
 | `rust-development/rust-workspace-patterns` | MIT | Hermes Agent for belal | https://github.com/GREsau/schemars, https://github.com/dtolnay/anyhow |
+| `social-media/reddit-reading` | MIT | Teknium (teknium1), Hermes Agent | https://github.com/Panniantong/Agent-Reach |
 | `software-development/debugging-hermes-tui-commands` | MIT | Hermes Agent | - |
 | `software-development/delivery-verification-gate` | MIT | Hermes Agent | - |
 | `software-development/eww-interface-design-with-grok` | - | Hermes Agent | - |
 | `software-development/flutter-glass-ui` | MIT | Hermes Agent | - |
+| `software-development/hermes-agent-skill-authoring` | MIT | Hermes Agent | - |
 | `software-development/linux-desktop-app-packaging` | - | Hermes Agent | - |
 | `software-development/plan` | MIT | Hermes Agent (writing-craft adapted from obra/superpowers) | - |
 | `software-development/requesting-code-review` | MIT | Hermes Agent (adapted from obra/superpowers + MorAlekss) | - |
@@ -93,5 +101,16 @@ included in this repo.
 | `tools/provider-scanner` | MIT | - | - |
 | `tools/rigor-evaluator` | MIT | - | - |
 | `web/blocked-page-recovery` | MIT | - | - |
+
+## Upstream sources
+
+| Upstream | License | Skills here |
+|---|---|---|
+| https://github.com/mattpocock/skills | MIT | `mattpocock/*`, `prototype`, `tdd`, `issue-triage` |
+| https://github.com/cloudflare/skills | Apache-2.0 | `agents-sdk`, `turnstile-spin`, Cloudflare skills |
+| https://github.com/heygen-com/hyperframes | Apache-2.0 | `hyperframes*` |
+| https://github.com/NousResearch/hermes-agent | MIT | skills authored by "Hermes Agent" |
+| https://github.com/anthropics/knowledge-work-plugins | Apache-2.0 | skills marked Anthropic |
+| https://github.com/Gentleman-Programming/gentle-shell | MIT (Copyright (c) Gentleman Programming) | `gentleman-*` |
 
 Apache-2.0 and MIT texts: https://www.apache.org/licenses/LICENSE-2.0 , https://opensource.org/license/mit

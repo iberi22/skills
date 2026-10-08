@@ -39,6 +39,9 @@ skills:
   - id: background-transfer-monitor
     category: devops
     description: "Use when running long background uploads: track progress."
+  - id: cpanel-node-ops
+    category: devops
+    description: "Use when deploying Node backends on cPanel hosting."
   - id: cron-fleet-maintenance
     category: devops
     description: "Use when auditing or repairing a fleet of cron jobs."
@@ -60,6 +63,9 @@ skills:
   - id: rclone-drive-backup
     category: devops
     description: "Use when uploading local trees to Google Drive."
+  - id: shared-hosting-node-ops
+    category: devops
+    description: "Use when debugging Node on shared hosting: keep one copy."
   - id: subagent-output-truncation
     category: devops
     description: "Fix subagents that hit max output tokens and ship nothing."
@@ -90,15 +96,24 @@ skills:
   - id: mobile-app-builder
     category: engineering-workflow
     description: "Use when building or optimizing an iOS, Android or cross-platform mobile app (performance, memory, battery, native UX)."
+  - id: prototype
+    category: engineering-workflow
+    description: "Workflow for rapid feature prototyping. Prioritizes speed over quality, disposable code over maintainable code, and hypothesis validation over robustness. Shifts the mindset from 'production' to 'expe"
   - id: rapid-prototyper
     category: engineering-workflow
     description: "Rapid MVP prototyping role: scaffold, core flows, demo polish, refactor notes. Use when turning an idea into a runnable demo fast."
+  - id: tdd
+    category: engineering-workflow
+    description: "Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions 'red-green-refactor', or wants integration tests."
   - id: test-writer-fixer
     category: engineering-workflow
     description: "Write and repair tests: map changes to tests, run focused suites, fix failures without weakening assertions. Use after code changes or when tests fail."
   - id: astro
     category: framework
     description: "Use when creating or deploying an Astro static site or blog, setting up multilingual (i18n) content, or hosting it on Cloudflare Pages."
+  - id: nextjs
+    category: framework
+    description: ""
   - id: tailwindcss
     category: framework
     description: "Tailwind CSS utility, variant and config pitfalls (v3 config model; v4 uses CSS-first config). Use when writing or debugging Tailwind classes or config."
@@ -111,6 +126,9 @@ skills:
   - id: agentic-e2e
     category: general
     description: "Agentic end-to-end testing with tester-army/e2e (npm `e2e`): natural-language agent steps with exact assertions, a replay cache that reruns verified steps without model calls, `e2e explore` and bug ba"
+  - id: agents-sdk
+    category: general
+    description: "Build AI agents on Cloudflare Workers using the Agents SDK. Load when creating stateful agents, durable workflows, real-time WebSocket apps, scheduled tasks, MCP servers, chat applications, voice agen"
   - id: agy-customizations
     category: general
     description: "Customizar Antigravity/agy: donde viven skills, rules, agentes y hooks, formato .skill-lock.json y como agregar personalizaciones sin romper updates."
@@ -120,12 +138,18 @@ skills:
   - id: bateria-de-testing
     category: general
     description: "Bateria de testing completa para apps local-first (Astro/Svelte): unit, plantillas, E2E (offline, tema y movil), barrido visual, QA exploratoria y cierre. Router sobre vitest, Playwright y tester-army"
+  - id: browser-automation
+    category: general
+    description: "Create AI agents that control web pages using natural language. Based on Alibaba's page-agent architecture. Use when building browser AI copilots, web automation agents, or DOM-based tool systems."
   - id: camera-photo-backup
     category: general
     description: "Respaldo seguro de fotos/videos desde tarjeta SD de camara: montaje, copia verificada con checksums y liberacion de la tarjeta. Nunca borra sin verificar."
   - id: cargo-wizard
     category: general
     description: "Use when validating Rust code. Runs check test clippy fmt."
+  - id: cloudflare-billing-guard
+    category: general
+    description: "Reglas y salvaguardas para prevenir bucles infinitos, explosiones de facturación y saturación de recursos en Cloudflare Workers, Durable Objects y KV. Provee patrones de Circuit Breaker para alarmas, "
   - id: cloudflare-one
     category: general
     description: "Guides Cloudflare One Zero Trust and SASE work across Access, Gateway, WARP, Tunnel, Cloudflare WAN, DLP, CASB, device posture, and identity. Use when designing, configuring, troubleshooting, or revie"
@@ -141,6 +165,9 @@ skills:
   - id: community-hexagonal
     category: general
     description: ">"
+  - id: critical-change-evaluator
+    category: general
+    description: "Strict protocol and evaluator for auditing high-impact code changes (security, auth, schemas, concurrency, shared file access and UI layers), language-agnostic."
   - id: cron-automation-manager
     category: general
     description: "Manage and create scheduled cron jobs, automated monitoring tasks, reminders, and periodic push notifications. Use when the user asks to create or manage any scheduled task, monitoring workflow, or au"
@@ -201,6 +228,9 @@ skills:
   - id: gentleman-issue-creation
     category: general
     description: ">"
+  - id: gentleman-playwright
+    category: general
+    description: ">"
   - id: gentleman-skill-creator
     category: general
     description: ">"
@@ -213,9 +243,15 @@ skills:
   - id: hyperframes
     category: general
     description: ">"
+  - id: hyperframes-animation
+    category: general
+    description: "All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lot"
   - id: hyperframes-audio
     category: general
     description: ">"
+  - id: hyperframes-core
+    category: general
+    description: "The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class='clip'`, tracks, sub-compositions, variables, framework-owned"
   - id: hyperframes-keyframes
     category: general
     description: ">"
@@ -258,6 +294,9 @@ skills:
   - id: page-agent-dev
     category: general
     description: "Development workflow for Alibaba's page-agent monorepo. Use when working with page-agent packages, building browser AI agents, or extending the page-agent architecture."
+  - id: pr-review
+    category: general
+    description: "PR Review Agent with Security and Decision Framework. Orchestrates code reviews with security analysis, code quality checks, and interactive decisions."
   - id: public-repo-maintainer
     category: general
     description: "Maintain a busy public repo (t3code-style). Triggers: public repo maintenance, contributor PR triage, branch/worktree policy, release nightly/stable, dependabot batching, CI gates, security disclosure"
@@ -279,6 +318,9 @@ skills:
   - id: sdd-hibrido
     category: general
     description: "Use when routing a task before creating SDD artifacts."
+  - id: security-audit
+    category: general
+    description: "Security guidance and vulnerability review for codebases, APIs, services, CLI tools, libraries, and daemons. Use for security questions, focused reviews, vulnerability research, security audits, or pe"
   - id: skill-orchestrator
     category: general
     description: "Pipeline de orquestación multi-agente del ecosistema SWAL. Usar ANTES de cualquier delegación o sessions_spawn. Define los roles (orquestador/ejecutores), el reparto de trabajo, los modos de ejecución"
@@ -309,6 +351,9 @@ skills:
   - id: threejs-visual-validation
     category: general
     description: "Validate advanced Three.js graphics as authored systems rather than subjective screenshots. Use for fixed-view visual contracts, field and pass diagnostics, no-post baselines, seed sweeps, camera-scal"
+  - id: turnstile-spin
+    category: general
+    description: "Set up Cloudflare Turnstile end-to-end in a project. Scan the codebase, create the widget via the Cloudflare API, embed it where user requests need bot verification (form submissions, SPA actions, API"
   - id: web-perf
     category: general
     description: "Analyzes web performance using Chrome DevTools MCP. Measures Core Web Vitals (LCP, INP, CLS) and supplementary metrics (FCP, TBT, Speed Index), identifies render-blocking resources, network dependency"
@@ -333,6 +378,9 @@ skills:
   - id: codebase-inspection
     category: github
     description: "Deep-dive codebase analysis: LOC, structure, CI/CD, docs infrastructure, code symbol indexing, GitHub Pages readiness, and improvement planning."
+  - id: github-repo-management
+    category: github
+    description: "Clone/create/fork repos; manage remotes, releases."
   - id: jev-browser-use
     category: jev
     description: "Use when driving a web page in a browser — clicking, typing, navigating, logged-in or JS-rendered pages. Jev picks each step from the elements observed, under a host allowlist and a step budget."
@@ -354,6 +402,9 @@ skills:
   - id: jev-model-routing
     category: jev
     description: "Use to pick the cheapest model that is good enough for a turn — choosing a model, delegating a sub-task to a sub-agent, cutting model spend, or setting up and tuning Jev routing pools."
+  - id: jev-setup
+    category: jev
+    description: "Use when Jev is not working yet, a Jev tool reports no_key or auth_failed, or the person asks to connect or fix Jev. Gets their TypeSafe or OpenRouter key into the secret store, unseen by you."
   - id: jev-skill-select
     category: jev
     description: "Use when unsure which of many installed skills applies to a request, if any, or when asked to make skill loading cheaper or more accurate. Jev ranks the whole catalog and may say no skill is needed."
@@ -381,6 +432,9 @@ skills:
   - id: twitter-engager
     category: marketing
     description: ""
+  - id: ask-matt
+    category: mattpocock
+    description: "Ask which skill or flow fits your situation. A router over the skills in this repo."
   - id: claude-handoff
     category: mattpocock
     description: "Hand the current conversation off to a fresh background agent that picks up the work immediately."
@@ -462,6 +516,9 @@ skills:
   - id: wayfinder
     category: mattpocock
     description: "Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on your issue tracker, and resolve them one at a time until the way to the destination is clear."
+  - id: wizard
+    category: mattpocock
+    description: "Generate an interactive bash wizard that walks a human through steps only they can perform. Use when provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-part"
   - id: writing-beats
     category: mattpocock
     description: "Writing, exploit; assemble raw material into a journey of beats, grounding each term before a beat leans on it."
@@ -516,6 +573,9 @@ skills:
   - id: rust-workspace-patterns
     category: rust-development
     description: "Use when structuring Rust workspaces. Layouts and splits."
+  - id: reddit-reading
+    category: social-media
+    description: "Read Reddit: subreddits, search, threads, users. No browser."
   - id: debugging-hermes-tui-commands
     category: software-development
     description: "Debug Hermes TUI: slash commands, rendering/layout, Python gateway, Ink UI."
@@ -531,6 +591,9 @@ skills:
   - id: graph-view-styling
     category: software-development
     description: "Use when restyling graph or knowledge-map views (sigma.js)."
+  - id: hermes-agent-skill-authoring
+    category: software-development
+    description: "Author in-repo SKILL.md files: frontmatter and structure."
   - id: linux-desktop-app-packaging
     category: software-development
     description: ">"
