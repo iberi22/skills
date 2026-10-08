@@ -50,7 +50,7 @@ transfers: live WAL/SHM files always error with `md5 hashes differ` or
 `source file is being updated`, and large DBs that are genuinely worth keeping
 are often already hidden by `- **/data/**` / `- .xavier/**` excludes.
 
-Correct pattern (implemented in `proyectosSWAL/scripts/db-backup-snapshot.py`,
+Correct pattern (implemented in a `db-backup-snapshot.py` script,
 daily cron wrapper `~/.hermes/scripts/db-backup-db.sh`):
 1. `sqlite3 VACUUM INTO` per DB via Python's `sqlite3` — a consistent, defragmented
    snapshot that does NOT require stopping the writer. Check `PRAGMA quick_check`
