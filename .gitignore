@@ -36,3 +36,9 @@ Thumbs.db
 /clawd/
 /codex/
 /openclaw-npm/
+
+# Local tooling caches and private project scaffolding (never publish)
+.atl/
+.gitcore/
+.skills/
+.skill-registry.cache.json
