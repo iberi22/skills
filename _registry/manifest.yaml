@@ -1,5 +1,5 @@
 schema_version: '1.0'
-generated_at: '2026-10-11T18:39:44.745570+00:00'
+generated_at: '2026-10-11T18:46:17.790316+00:00'
 repository: https://github.com/iberi22/skills
 total_skills: 225
 categories:
@@ -2482,7 +2482,7 @@ skills:
   - hls
   path: skills/tools/remote-displays
   raw_url: https://raw.githubusercontent.com/iberi22/skills/main/skills/tools/remote-displays/SKILL.md
-  version: 0.4.0
+  version: 0.4.1
   authors:
   - Brahyan Belalcazar (iberi22)
   - Hermes Agent

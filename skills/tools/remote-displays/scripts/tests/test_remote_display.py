@@ -145,6 +145,11 @@ class ProtocolTests(unittest.TestCase):
             with self.subTest(url=url), self.assertRaises(ValueError):
                 rd.read_http(url, 1)
 
+    def test_url_opener_has_no_file_or_ftp_dispatch(self):
+        for url in ("file:///etc/hostname", "ftp://127.0.0.1/any"):
+            with self.subTest(url=url), self.assertRaises(urllib.error.URLError):
+                rd.HTTP.open(url, timeout=1)
+
     def test_description_url_scheme_restrictions(self):
         bad_base = ('<root><URLBase>file:///etc/</URLBase><device><friendlyName>X</friendlyName>'
                     '<serviceList><service><serviceType>urn:schemas-upnp-org:service:AVTransport:1'
@@ -172,6 +177,9 @@ class ProtocolTests(unittest.TestCase):
             rd.xml_values(payload)
         with self.assertRaises(ValueError):
             rd.parse_description(payload, LOCATION)
+        padded = b"<!-- " + b"x" * 5000 + b" --><!DOCTYPE a><a/>"
+        with self.assertRaises(ValueError):
+            rd.xml_values(padded)
 
     def test_discovery_deduplicates_and_keeps_services(self):
         device = fixture_device()
@@ -455,6 +463,7 @@ class TransportExtrasTests(unittest.TestCase):
                      ["monitor", "192.0.2.7", "--output", "bad/name"],
                      ["play", "192.0.2.7", "x.mp4", "--duration", "0"],
                      ["seek", "192.0.2.7", "00:60:00"],
+                     ["seek", "192.0.2.7", "0\u0660:00:00"],
                      ["wake", "AA:BB:CC:DD:EE:FF", "--broadcast", "not-an-ip"]):
             with self.subTest(argv=argv), contextlib.redirect_stderr(io.StringIO()), \
                  self.assertRaises(SystemExit):
@@ -623,6 +632,33 @@ class MonitorLifecycleTests(unittest.TestCase):
                 capture.terminate.assert_called_once()
                 capture.wait.assert_called_once()
                 self.assertFalse((Path(directory) / "capture.fifo").exists())
+
+    def test_ensure_output_timeout_removes_created_output(self):
+        with patch.object(rd, "output_present", return_value=False), \
+             patch.object(rd, "hyprctl") as hyprctl, \
+             patch.object(rd.time, "time", side_effect=[0, 0, 11]), \
+             patch.object(rd.time, "sleep"):
+            with self.assertRaisesRegex(RuntimeError, "did not appear"):
+                rd.ensure_output({}, "HEADLESS-9", create=True)
+        self.assertIn(unittest.mock.call({}, "output", "remove", "HEADLESS-9"),
+                      hyprctl.call_args_list)
+
+    def test_monitor_refuses_symlinked_run_dirs(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            (base / "real" / "sub").mkdir(parents=True)
+            (base / "link").symlink_to(base / "real", target_is_directory=True)
+            (base / "plink").symlink_to(base / "real", target_is_directory=True)
+            for target in (base / "link", base / "plink" / "sub"):
+                with self.subTest(target=str(target)):
+                    args = rd.build_parser().parse_args([
+                        "monitor", "192.0.2.7", "--output", "HEADLESS-9",
+                        "--capture", "/fake/capture", "--ffmpeg", "/fake/ffmpeg",
+                        "--dir", str(target)])
+                    with patch.object(rd, "display_env", return_value={}), \
+                         patch.object(rd.shutil, "which", return_value=None):
+                        with self.assertRaisesRegex(RuntimeError, "symlinked run directory"):
+                            rd.monitor(args, fixture_device())
 
 
 if __name__ == "__main__":

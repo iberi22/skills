@@ -3,7 +3,7 @@ name: remote-displays
 id: remote-displays
 category: tools
 description: Discover, cast to, and control screens on the LAN.
-version: 0.4.0
+version: 0.4.1
 authors: [Brahyan Belalcazar (iberi22), Hermes Agent]
 license: MIT
 platforms: [linux]

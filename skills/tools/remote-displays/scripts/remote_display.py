@@ -39,12 +39,18 @@ RENDERER = "urn:schemas-upnp-org:device:MediaRenderer:1"
 MDNS_TYPES = ("_airplay._tcp.local", "_raop._tcp.local",
               "_googlecast._tcp.local", "_display._tcp.local",
               "_samsungmsf._tcp.local", "_services._dns-sd._udp.local")
-HTTP = urllib.request.build_opener(urllib.request.ProxyHandler({}))
-# stdlib build_opener also installs File/FTP handlers; drop them so a hostile
-# device description can never make the tool read local files or hit FTP targets.
-HTTP.handlers = [handler for handler in HTTP.handlers
-                 if not isinstance(handler, (urllib.request.FileHandler,
-                                             urllib.request.FTPHandler))]
+# Built by hand so ONLY the HTTP(S) handler classes are registered: mutating the
+# `.handlers` list of build_opener's result does not remove dispatch targets, and
+# this way a hostile device description can never dispatch file:// or ftp:// URLs.
+HTTP = urllib.request.OpenerDirector()
+for handler in (urllib.request.ProxyHandler({}),
+                urllib.request.UnknownHandler(),
+                urllib.request.HTTPHandler(),
+                urllib.request.HTTPDefaultErrorHandler(),
+                urllib.request.HTTPRedirectHandler(),
+                urllib.request.HTTPErrorProcessor(),
+                urllib.request.HTTPSHandler()):
+    HTTP.add_handler(handler)
 MAX_BODY = 2 * 1024 * 1024
 
 
@@ -101,8 +107,8 @@ def local_tag(tag: str) -> str:
 def reject_xml_entities(data: bytes | str) -> None:
     """Refuse DOCTYPE/ENTITY declarations (removes any XXE / entity-expansion surface)."""
     probe = data if isinstance(data, bytes) else data.encode("utf-8", "replace")
-    head = probe[:4096].upper()
-    if b"<!DOCTYPE" in head or b"<!ENTITY" in head:
+    upper = probe.upper()
+    if b"<!DOCTYPE" in upper or b"<!ENTITY" in upper:
         raise ValueError("XML DOCTYPE/ENTITY declarations are not accepted")
 
 
@@ -219,7 +225,7 @@ def parse_range_header(header: str | None, size: int) -> tuple[int, int] | None:
     """Inclusive byte bounds; reject malformed, multiple, or unsatisfiable ranges."""
     if header is None:
         return None
-    match = re.fullmatch(r"bytes=(\d*)-(\d*)", header.strip())
+    match = re.fullmatch(r"bytes=([0-9]*)-([0-9]*)", header.strip())
     if not match or size <= 0 or not any(match.groups()):
         raise ValueError("Invalid or unsatisfiable byte range")
     first, last = match.groups()
@@ -609,6 +615,12 @@ def ensure_output(env: dict[str, str], name: str, create: bool) -> bool:
         if output_present(env, name):
             return True
         time.sleep(0.5)
+    # Never became usable: best-effort removal so a late-appearing output is not
+    # leaked while the caller still believes nothing was created.
+    try:
+        hyprctl(env, "output", "remove", name)
+    except (RuntimeError, OSError, subprocess.TimeoutExpired):
+        pass
     raise RuntimeError(f"headless output '{name}' did not appear")
 
 
@@ -704,7 +716,7 @@ def make_ts_handler(fifo: Path, stopped: threading.Event, mime: str = "video/mpe
     return TsHandler
 
 
-HLS_NAME = re.compile(r"^(live\.m3u8|seg\d{5}\.ts)$")
+HLS_NAME = re.compile(r"^(live\.m3u8|seg[0-9]{5}\.ts)$")
 
 
 def make_hls_handler(directory: Path, log=lambda message: None,
@@ -769,10 +781,15 @@ def monitor(args: argparse.Namespace, device: dict[str, Any]) -> None:
         raise RuntimeError("ffmpeg not found; install it or pass --ffmpeg")
     run_dir = (Path(args.dir).expanduser() if args.dir
                else Path.home() / ".cache" / "remote-display" / "monitor")
-    if run_dir.is_symlink():
+    if run_dir.is_symlink() or os.path.realpath(run_dir) != os.path.abspath(run_dir):
         raise RuntimeError(f"refusing symlinked run directory: {run_dir}")
     if not run_dir.is_dir():
         run_dir.mkdir(parents=True, mode=0o700)
+    elif args.dir is None:
+        try:
+            run_dir.chmod(0o700)  # tighten the default cache dir when reused
+        except OSError:
+            pass
     for pattern in ("seg*.ts", "live.m3u8"):
         for stale in run_dir.glob(pattern):
             stale.unlink()
@@ -965,7 +982,7 @@ def nonnegative(value: str) -> float:
 
 
 def timestamp(value: str) -> str:
-    if not re.fullmatch(r"\d{1,2}:[0-5]\d:[0-5]\d", value):
+    if not re.fullmatch(r"[0-9]{1,2}:[0-5][0-9]:[0-5][0-9]", value):
         raise argparse.ArgumentTypeError("Provide a position as HH:MM:SS (MM and SS below 60)")
     return value
 
