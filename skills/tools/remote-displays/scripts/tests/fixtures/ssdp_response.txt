@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+CACHE-CONTROL: max-age=1800
+LOCATION: http://renderer.invalid/rootDesc.xml
+ST: urn:schemas-upnp-org:device:MediaRenderer:1
+USN: uuid:synthetic-renderer::urn:schemas-upnp-org:device:MediaRenderer:1

@@ -4,7 +4,7 @@ name: test-results-analyzer
 category: testing
 tags:
   - test-results-analyzer
-description: Analyze test run results: failure patterns, flaky tests, coverage gaps, trend reports. Use when interpreting CI/test logs or producing a quality report.
+description: 'Analyze test run results: failure patterns, flaky tests, coverage gaps, trend reports. Use when interpreting CI/test logs or producing a quality report.'
 authors:
   - Brahyan Belalcazar
 ---

@@ -1,7 +1,7 @@
 ---
 id: rapid-prototyper
 name: rapid-prototyper
-description: Rapid MVP prototyping role: scaffold, core flows, demo polish, refactor notes. Use when turning an idea into a runnable demo fast.
+description: 'Rapid MVP prototyping role: scaffold, core flows, demo polish, refactor notes. Use when turning an idea into a runnable demo fast.'
 category: engineering-workflow
 tags:
   - rapid-prototyper

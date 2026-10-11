@@ -99,6 +99,7 @@ included in this repo.
 | `testing/test-results-analyzer` | - | - | - |
 | `tools/codex` | MIT | Hermes Agent | https://github.com/openai/codex, https://github.com/user/repo.git |
 | `tools/provider-scanner` | MIT | - | - |
+| `tools/remote-displays` | MIT | Brahyan Belalcazar (iberi22) + Hermes Agent | https://github.com/IlyaP358/fluxcast |
 | `tools/rigor-evaluator` | MIT | - | - |
 | `web/blocked-page-recovery` | MIT | - | - |
 

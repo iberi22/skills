@@ -2,7 +2,7 @@
 name: bug-triage
 slug: bug-triage
 version: 1.0.0
-description: Use when diagnosing a bug in code. Five steps: understand the symptom, form hypotheses, test each with the smallest experiment, isolate the root cause, then fix with a regression test. For issue-tracker states and roles, use issue-triage.
+description: 'Use when diagnosing a bug in code. Five steps: understand the symptom, form hypotheses, test each with the smallest experiment, isolate the root cause, then fix with a regression test. For issue-tracker states and roles, use issue-triage.'
 license: MIT
 original_source: https://github.com/mattpocock/skills
 category: debugging

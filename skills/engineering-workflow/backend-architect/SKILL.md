@@ -1,7 +1,7 @@
 ---
 id: backend-architect
 name: backend-architect
-description: Backend architecture role: API and DB design, minimal change sets, instrumentation and validation. Use for server-side design or refactor tasks.
+description: 'Backend architecture role: API and DB design, minimal change sets, instrumentation and validation. Use for server-side design or refactor tasks.'
 category: engineering-workflow
 tags:
   - backend-architect

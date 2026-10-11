@@ -1,6 +1,6 @@
 ---
 name: public-repo-maintainer
-description: Maintain a busy public repo (t3code-style). Triggers: public repo maintenance, contributor PR triage, branch/worktree policy, release nightly/stable, dependabot batching, CI gates, security disclosure, weekly repo checklist, labels and issue triage.
+description: 'Maintain a busy public repo (t3code-style). Triggers: public repo maintenance, contributor PR triage, branch/worktree policy, release nightly/stable, dependabot batching, CI gates, security disclosure, weekly repo checklist, labels and issue triage.'
 ---
 
 # Public Repo Maintainer (t3code model)
